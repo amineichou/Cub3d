@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 14:08:43 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/09 14:43:21 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/09 19:50:34 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,14 @@ static void	appand_to_lst(t_garbage **lst, t_garbage *node)
 	if (*lst == NULL)
 	{
 		*lst = node;
+		node->next = NULL;
 		return ;
 	}
-	tmp = *lst;
-	while (tmp)
+	tmp = (*lst);
+	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = node;
+	tmp->next = NULL;
 }
 
 /*
@@ -59,7 +61,6 @@ void	*g_malloc(size_t size, t_g_malloc mode)
 		node->allocated = malloc(size);
 		if (!node->allocated)
 			return (NULL);
-		node->next = NULL;
 		appand_to_lst(&lst, node);
 		return (node->allocated);
 	}

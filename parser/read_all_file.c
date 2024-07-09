@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:42:04 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/09 17:00:36 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/09 20:21:47 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,8 @@ char	*read_all_file(int fd)
 	res = NULL;
 	while (line)
 	{
-		ft_strjoin(res, line);
+		if (line && line[0] != '\n')
+			res = ft_strjoin(res, line);
 		line = get_next_line(fd);
 	}
 	return (res);

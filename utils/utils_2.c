@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:44:12 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/09 17:07:21 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/09 20:14:45 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ char	*ft_strjoin(char *first, char *second)
 	int		i;
 	int		j;
 
-	if (!first || !second)
-		return (NULL);
+	if (!first)
+		return (ft_strdup(second));
+	else if (!second)
+		return (ft_strdup(first));
 	res = g_malloc(sizeof(char) * (ft_strlen(first) + ft_strlen(second) + 1), ALLOCATE);
 	if (!res)
-		return (free(first), first = NULL, NULL);
+		return (first = NULL, NULL);
 	i = 0;
 	j = 0;
 	while (first[j])
@@ -31,7 +33,6 @@ char	*ft_strjoin(char *first, char *second)
 	while (second[j])
 		res[i++] = second[j++];
 	res[i] = '\0';
-	free(first);
 	return (res);
 }
 
@@ -49,26 +50,4 @@ int	ft_strsearch(char *str, char c)
 		i++;
 	}
 	return (0);
-}
-
-char	*ft_strdup(char *str)
-{
-	char	*result;
-	int		i;
-	int		str_len;
-
-	if (!str)
-		return (NULL);
-	i = 0;
-	str_len = ft_strlen(str);
-	result = malloc(sizeof(char) * str_len + 1);
-	if (!result)
-		return (NULL);
-	while (str[i])
-	{
-		result[i] = str[i];
-		i++;
-	}
-	result[i] = '\0';
-	return (result);
 }

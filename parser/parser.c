@@ -6,39 +6,21 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 11:11:24 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/09 14:52:09 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/09 21:36:58 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-static int	check_extension(char *ext, int i)
+static int	check_valid_filename(char *filename)
 {
-	i++;
-	if (ext[i] == '\0' || ft_strcmp(&ext[i], "cub") != 0)
+	char	*extension;
+
+	extension = ft_strrchr(filename, '.');
+	if (!extension)
 		return (ft_printerror(EXT_ERR), -1);
-	return (0);
-}
-
-static int	check_filename(char *filename)
-{
-	int		i;
-	bool	no_extension;
-
-	i = 0;
-	no_extension = true;
-	while (filename[i])
-	{
-		if (filename[i] == '.')
-		{
-			if (check_extension(filename, i) == -1)
-				return (-1);
-			no_extension = false;
-		}
-		i++;
-	}
-	if (no_extension)
-		return (ft_printerror(NO_EXT_ERR), -1);
+	if (ft_strcmp(extension, ".cub") != 0)
+		return (ft_printerror(EXT_ERR), -1);
 	return (1);
 }
 
@@ -49,15 +31,17 @@ static int	check_filename(char *filename)
 */
 int	parser(int ac, char **av)
 {
-	char	*filename;
+	t_config	*game_config;
 
 	if (ac < 2 || ac > 2)
 		return (ft_printerror("no valid arguments\n"), -1);
-	filename = ft_strrchr(av[1], '/');
-	filename++;
-	if (check_filename(filename) == -1)
+	if (check_valid_filename(av[1]) == -1)
 		return (-1);
-	if (map_vaidator(av[1]))
-		return (-1);
+	game_config = check_file_content(av[1]);
+	// if (map_vaidator(file_content))
+	// 	return (-1);
+
+	// printf("%s\n", av[1]);
+
 	return (1);
 }

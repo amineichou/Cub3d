@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 12:00:33 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/09 17:13:09 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/09 20:14:27 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	ft_printerror(char *msg)
 
 /*
 	locates the last occurrence of c in s
+	returns NULL if there's no c in s
 */
 char	*ft_strrchr(char *s, int c)
 {
@@ -59,7 +60,7 @@ char	*ft_strrchr(char *s, int c)
 
 	i = 0;
 	source = (char *)s;
-	last = s;
+	last = NULL;
 	slen = ft_strlen(s);
 	while (i <= slen)
 	{
@@ -68,4 +69,26 @@ char	*ft_strrchr(char *s, int c)
 		i++;
 	}
 	return (last);
+}
+
+char	*ft_strdup(char *s1)
+{
+	int		str_length;
+	int		i;
+	char	*s2;
+
+	if (!s1)
+		return (NULL);
+	i = 0;
+	str_length = ft_strlen(s1) + 1;
+	s2 = g_malloc(sizeof(char) * str_length, ALLOCATE);
+	if (!s2)
+		return (NULL);
+	while (s1[i])
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	s2[i] = '\0';
+	return (s2);
 }
