@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 12:00:33 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/09 13:26:57 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/09 17:13:09 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,27 @@ void	ft_printerror(char *msg)
 		write(2, &msg[i], 1);
 		i++;
 	}
+}
+
+/*
+	locates the last occurrence of c in s
+*/
+char	*ft_strrchr(char *s, int c)
+{
+	int		i;
+	int		slen;
+	char	*last;
+	char	*source;
+
+	i = 0;
+	source = (char *)s;
+	last = s;
+	slen = ft_strlen(s);
+	while (i <= slen)
+	{
+		if (source[i] == (char)c)
+			last = &source[i];
+		i++;
+	}
+	return (last);
 }
