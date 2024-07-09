@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 11:11:24 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/09 13:26:44 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/09 14:52:09 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,22 @@ static int	check_filename(char *filename)
 	return (1);
 }
 
-// returns -1 when error and 1 in success
-int	parser(int ac, char **filename)
+/*
+	checks the map file name, existence and format.
+	also checks the configuration (valid args and map).
+	returns -1 when error and 1 in success.
+*/
+int	parser(int ac, char **av)
 {
+	char	*filename;
+
 	if (ac < 2 || ac > 2)
 		return (ft_printerror("no valid arguments\n"), -1);
-	if (check_filename(filename[1]) == -1)
+	filename = ft_strrchr(av[1], '/');
+	filename++;
+	if (check_filename(filename) == -1)
 		return (-1);
-	if (map_vaidator(filename[1]))
+	if (map_vaidator(av[1]))
 		return (-1);
 	return (1);
 }
