@@ -1,7 +1,7 @@
 NAME = cub3d
-SRC = main.c garbage_collector.c parser/parser.c parser/read_all_file.c parser/map_validator.c \
-		parser/get_config.c \
-		utils/utils_1.c utils/utils_2.c
+SRC = main.c garbage_collector.c parser/parser.c parser/check_map.c \
+		parser/get_config.c parser/get_next_line.c \
+		utils/utils_1.c utils/utils_2.c utils/utils_3.c utils/ft_split.c
 CC = cc
 FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 MLX_LINKER_API = -Lmlx -lmlx -framework OpenGL -framework AppKit

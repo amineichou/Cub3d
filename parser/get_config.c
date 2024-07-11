@@ -6,32 +6,120 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:32:15 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/09 21:40:05 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/11 20:26:55 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-/*
-	checks file args and return a struct
-	if a problem acurred it returns NULL
-*/
-t_config	*check_file_content(char *filename)
+static char	**get_map(int fd, char *line)
 {
-	t_config	*config;
-	char		*file_content;
-	int			fd;
+	char	**map;
+	int		i;
 
-	fd = open(filename, O_RDONLY, 777);
-	if (fd == -1)
-		return (ft_printerror(OPEN_ERR), NULL);
-	file_content = read_all_file(fd);
-	if (!file_content)
-		return (ft_printerror("emty file\n"), NULL);
+	i = 0;
+	while (ft_isemptystr(line))
+		line = get_next_line(fd);
+	map = g_malloc(sizeof(char *) * 1024, ALLOCATE);
+	while (line)
+	{
+		map[i] = line;
+		if (line && ft_isemptystr(line))
+			return (ft_printerror("invalid map\n"), NULL);
+		line = get_next_line(fd);
+		i++;
+	}
+	map[i] = NULL;
+	return (map);
+}
+
+static int	set_arg(t_config *config, char *line, int args_count)
+{
+	char	**args;
+
+	line = ft_trim_spaces(line);
+	args = ft_divide_str(line);
+	if (args && args[0] && args[1] && ft_strcmp(args[0], "NO") == 0
+		&& args_count == 1)
+		config->no = args[1];
+	else if (args && args[0] && args[1] && ft_strcmp(args[0], "SO") == 0
+		&& args_count == 2)
+		config->so = args[1];
+	else if (args && args[0] && args[1] && ft_strcmp(args[0], "WE") == 0
+		&& args_count == 3)
+		config->we = args[1];
+	else if (args && args[0] && args[1] && ft_strcmp(args[0], "EA") == 0
+		&& args_count == 4)
+		config->ea = args[1];
+	else if (args && args[0] && args[1] && ft_strcmp(args[0], "F") == 0
+		&& args_count == 5) // TODO : protection
+		config->f = ft_split(args[1], ',');
+	else if (args && args[0] && args[1] && ft_strcmp(args[0], "C") == 0
+		&& args_count == 6)
+		config->c = ft_split(args[1], ',');
+	else
+		return (ft_printerror("invalid args\n"), -1);
+	return (1);
+}
+
+static t_config	*get_args(t_config *config, int fd)
+{
+	char	*line;
+	int		args_count;
+
 	config = g_malloc(sizeof(t_config), ALLOCATE);
 	if (!config)
 		return (NULL);
-	printf("%s\n", file_content);
-	return (NULL);
+	line = get_next_line(fd);
+	args_count = 1;
+	while (line)
+	{
+		if (line && !ft_isemptystr(line))
+		{
+			if (set_arg(config, line, args_count) == -1)
+				return (NULL);
+			args_count++;
+		}
+		line = get_next_line(fd);
+		if (args_count == 7)
+			break ;
+	}
+	config->map = get_map(fd, line);
+	if (!config->map)
+		return (NULL);
+	// test map
+	int i = 0;
+	while (config->map[i])
+	{
+		printf("%s\n", config->map[i]);
+		i++;
+	}
+	return (config);
 }
 
+/*
+	=> parsing args
+	=> making config
+	checks file args and return a struct
+	if a problem acurred it returns NULL
+*/
+t_config	*make_config(char *filename)
+{
+	int			fd;
+	t_config	*config;
+
+	config = NULL;
+	fd = open(filename, O_RDONLY, 777);
+	if (fd == -1)
+		return (ft_printerror(OPEN_ERR), NULL);
+	config = get_args(config, fd);
+	if (!config)
+		return (NULL);
+	// printf("%s\n", config->no);
+	// printf("%s\n", config->so);
+	// printf("%s\n", config->we);
+	// printf("%s\n", config->ea);
+	// printf("%s %s %s\n", config->f[0], config->f[1], config->f[2]);
+	// printf("%s %s %s\n", config->c[0], config->c[1], config->c[2]);
+	return (close(fd), NULL);
+}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_all_file.c                                    :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:42:04 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/09 20:21:47 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/11 15:34:28 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static char	*ft_extract_rest(char *result)
 	return (result = NULL, str);
 }
 
-static char	*get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static char	*result;
 	char		*line;
@@ -110,24 +110,4 @@ static char	*get_next_line(int fd)
 	if (!result)
 		return (free(line), result = NULL, NULL);
 	return (line);
-}
-
-/*
-	read all the file and returns a string.
-	returns NULL if allocation fails or if file is empty.
-*/
-char	*read_all_file(int fd)
-{
-	char	*res;
-	char	*line;
-
-	line = get_next_line(fd);
-	res = NULL;
-	while (line)
-	{
-		if (line && line[0] != '\n')
-			res = ft_strjoin(res, line);
-		line = get_next_line(fd);
-	}
-	return (res);
 }

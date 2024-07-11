@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:44:12 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/09 20:14:45 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/10 21:23:05 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,49 @@ int	ft_strsearch(char *str, char c)
 		i++;
 	}
 	return (0);
+}
+
+char	*ft_strldup(char *s1, int lenght)
+{
+	int		i;
+	char	*s2;
+
+	i = 0;
+	if (ft_strlen(s1) < lenght)
+		return (NULL);
+	s2 = g_malloc(sizeof(char) * (lenght + 1), ALLOCATE);
+	if (!s2)
+		return (NULL);
+	while (i < lenght)
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	s2[lenght] = '\0';
+	return (s2);
+}
+
+int	ft_isspace(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r')
+		return (1);
+	return (0);
+}
+
+/*
+	this function checks if the the string is empty
+	and returns 1, else if not returns 0
+*/
+int	ft_isemptystr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isspace(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }

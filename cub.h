@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/09 21:39:08 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/11 16:36:15 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_config
 	char	*so;
 	char	*we;
 	char	*ea;
-	int		**f;
-	int		**c;
+	char	**f;
+	char	**c;
 	char	**map;
 }	t_config;
 
@@ -50,7 +50,7 @@ typedef enum s_g_malloc
 // define errors
 # define OPEN_ERR "can't open the configuration file\n"
 # define EXT_ERR "invalid file, make sure the filename format is (file.cub)\n"
-
+# define MALLOC_ERR "can't allocat this region, malloc error\n"
 // garbage collector
 void	*g_malloc(size_t size, t_g_malloc mode);
 
@@ -62,13 +62,21 @@ char	*ft_strrchr(char *s, int c);
 char	*ft_strjoin(char *first, char *second);
 int		ft_strsearch(char *str, char c);
 char	*ft_strdup(char *str);
+char	*ft_strldup(char *s1, int lenght);
+int		ft_isspace(char c);
+int		ft_isemptystr(char *str);
+char	*ft_trim_spaces(char *str);
+char	*get_line(char *file_content, int count);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char	**ft_split(char const *s, char c);
+char	**ft_divide_str(char *str);
 
 // read_all_file
-char	*read_all_file(int fd);
+char	*get_next_line(int fd);
 
 // parser
 int			map_vaidator(char *filename);
 int			parser(int ac, char **filename);
-t_config	*check_file_content(char *filename);
+t_config	*make_config(char *filename);
 
 #endif
