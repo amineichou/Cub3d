@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/11 16:36:15 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/13 14:45:36 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ char	*get_next_line(int fd);
 int			map_vaidator(char *filename);
 int			parser(int ac, char **filename);
 t_config	*make_config(char *filename);
+char		**check_map(char *map_str, int s_row, int s_clm);
 
 #endif

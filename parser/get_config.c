@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:32:15 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/11 20:26:55 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/13 14:54:40 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,30 @@
 
 static char	**get_map(int fd, char *line)
 {
+	char	*map_str;
 	char	**map;
+	int		map_row;
+	int		map_colmun;
 	int		i;
 
 	i = 0;
+	map_row = -1;
+	map_colmun = 0;
+	map_str = NULL;
 	while (ft_isemptystr(line))
 		line = get_next_line(fd);
-	map = g_malloc(sizeof(char *) * 1024, ALLOCATE);
 	while (line)
 	{
-		map[i] = line;
 		if (line && ft_isemptystr(line))
 			return (ft_printerror("invalid map\n"), NULL);
+		map_str = ft_strjoin(map_str, line);
+		map_colmun++;
+		if (map_row < ft_strlen(line))
+			map_row = ft_strlen(line);
 		line = get_next_line(fd);
 		i++;
 	}
-	map[i] = NULL;
+	map = check_map(map_str, map_row, map_colmun);
 	return (map);
 }
 

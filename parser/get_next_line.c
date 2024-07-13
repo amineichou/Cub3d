@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:42:04 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/11 15:34:28 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/13 16:48:14 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*ft_read(int fd, char *result)
 	{
 		count = read(fd, buffer, BUFFER_SIZE);
 		if (count == -1)
-			return (free(buffer), NULL);
+			return (NULL);
 		if (count == 0)
 			break ;
 		buffer[count] = '\0';
@@ -33,7 +33,7 @@ static char	*ft_read(int fd, char *result)
 		if (!result)
 			break ;
 	}
-	return (free(buffer), result);
+	return (result);
 }
 
 static char	*ft_extract_line(char *result)
@@ -108,6 +108,6 @@ char	*get_next_line(int fd)
 		return (result = NULL, NULL);
 	result = ft_extract_rest(result);
 	if (!result)
-		return (free(line), result = NULL, NULL);
+		return (result = NULL, NULL);
 	return (line);
 }
