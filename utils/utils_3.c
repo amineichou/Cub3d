@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 21:37:05 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/11 17:05:19 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/13 17:47:17 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,19 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	dst[i] = '\0';
 	return (src_len);
+}
+
+/*
+	check if chat c is a valid map char
+	valid map chars are :
+	1 0 N S E W spaces/tabs
+	returns 1 if valid 0 if not
+*/
+int	is_valid_map_char(char c)
+{
+	if (c == '1' || c == '0' || c == 'N'
+		|| c == 'S' || c == 'E' || c == 'W'
+		|| ft_isspace(c))
+		return (1);
+	return (0);
 }

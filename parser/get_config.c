@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:32:15 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/13 14:54:40 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/13 21:34:22 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	**get_map(int fd, char *line)
 	while (line)
 	{
 		if (line && ft_isemptystr(line))
-			return (ft_printerror("invalid map\n"), NULL);
+			return (ft_printerror("invalid map. newlines in/after map\n"), NULL);
 		map_str = ft_strjoin(map_str, line);
 		map_colmun++;
 		if (map_row < ft_strlen(line))
@@ -37,7 +37,7 @@ static char	**get_map(int fd, char *line)
 		line = get_next_line(fd);
 		i++;
 	}
-	map = check_map(map_str, map_row, map_colmun);
+	map = make_map(map_str, map_row, map_colmun);
 	return (map);
 }
 
@@ -95,13 +95,6 @@ static t_config	*get_args(t_config *config, int fd)
 	config->map = get_map(fd, line);
 	if (!config->map)
 		return (NULL);
-	// test map
-	int i = 0;
-	while (config->map[i])
-	{
-		printf("%s\n", config->map[i]);
-		i++;
-	}
 	return (config);
 }
 
@@ -121,13 +114,7 @@ t_config	*make_config(char *filename)
 	if (fd == -1)
 		return (ft_printerror(OPEN_ERR), NULL);
 	config = get_args(config, fd);
-	if (!config)
-		return (NULL);
-	// printf("%s\n", config->no);
-	// printf("%s\n", config->so);
-	// printf("%s\n", config->we);
-	// printf("%s\n", config->ea);
-	// printf("%s %s %s\n", config->f[0], config->f[1], config->f[2]);
-	// printf("%s %s %s\n", config->c[0], config->c[1], config->c[2]);
-	return (close(fd), NULL);
+	if (!config || parse_map(config->map) == -1)
+		return (close(fd), NULL);
+	return (close(fd), config);
 }

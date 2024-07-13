@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/13 14:45:36 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/13 17:14:38 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,15 @@ char	*get_line(char *file_content, int count);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	**ft_split(char const *s, char c);
 char	**ft_divide_str(char *str);
+int		is_valid_map_char(char c);
 
 // read_all_file
 char	*get_next_line(int fd);
 
 // parser
-int			map_vaidator(char *filename);
+int			parse_map(char **map);
 int			parser(int ac, char **filename);
 t_config	*make_config(char *filename);
-char		**check_map(char *map_str, int s_row, int s_clm);
+char		**make_map(char *map_str, int s_row, int s_clm);
 
 #endif

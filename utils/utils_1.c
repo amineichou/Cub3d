@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 12:00:33 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/11 17:05:03 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/13 17:19:30 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_printerror(char *msg)
 	int	i;
 
 	i = 0;
-	write (2, "cub3d error : ", 15);
+	write (2, "Error\n", 7);
 	while (msg[i])
 	{
 		write(2, &msg[i], 1);

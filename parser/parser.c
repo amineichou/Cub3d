@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 11:11:24 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/11 15:35:16 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/13 17:50:13 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,18 @@ int	parser(int ac, char **av)
 	game_config = make_config(av[1]);
 	if (!game_config)
 		return (-1);
+	printf("%s\n", game_config->no);
+	printf("%s\n", game_config->so);
+	printf("%s\n", game_config->we);
+	printf("%s\n", game_config->ea);
+	printf("%s %s %s\n", game_config->f[0], game_config->f[1], game_config->f[2]);
+	printf("%s %s %s\n", game_config->c[0], game_config->c[1], game_config->c[2]);
+	// test map
+	int i = 0;
+	while (game_config->map[i])
+	{
+		printf("%s\n", game_config->map[i]);
+		i++;
+	}
 	return (1);
 }

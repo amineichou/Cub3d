@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   make_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 20:28:26 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/13 15:34:16 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/13 17:15:55 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*get_row(char *map_str, int *i, int s_row)
     this function trun the string (map_str)
     to a 2D array (map)
 */
-char	**check_map(char *map_str, int s_row, int s_clm)
+char	**make_map(char *map_str, int s_row, int s_clm)
 {
 	char	**map;
 	char	*row;
