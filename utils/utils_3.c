@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 21:37:05 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/13 17:47:17 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/14 16:34:05 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,19 @@ int	is_valid_map_char(char c)
 	if (c == '1' || c == '0' || c == 'N'
 		|| c == 'S' || c == 'E' || c == 'W'
 		|| ft_isspace(c))
+		return (1);
+	return (0);
+}
+
+/*
+	check if chat c is a player
+	player that can represent chars are :
+	N S E W
+	returns 1 if is a player, 0 if not
+*/
+int	is_player(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (1);
 	return (0);
 }

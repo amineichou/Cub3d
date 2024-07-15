@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:32:15 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/13 21:34:22 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/14 20:28:39 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static int	set_arg(t_config *config, char *line, int args_count)
 {
 	char	**args;
 
-	line = ft_trim_spaces(line);
 	args = ft_divide_str(line);
 	if (args && args[0] && args[1] && ft_strcmp(args[0], "NO") == 0
 		&& args_count == 1)
@@ -84,7 +83,7 @@ static t_config	*get_args(t_config *config, int fd)
 	{
 		if (line && !ft_isemptystr(line))
 		{
-			if (set_arg(config, line, args_count) == -1)
+			if (set_arg(config, ft_trim_spaces(line), args_count) == -1)
 				return (NULL);
 			args_count++;
 		}

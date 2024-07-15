@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/13 17:14:38 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:30:38 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ typedef enum s_g_malloc
 	FREE,
 }	t_g_malloc;
 
+typedef enum s_direction
+{
+	TOP,
+	RIGHT,
+	BOTTOM,
+	LEFT,
+}	t_direction;
+
 // define errors
 # define OPEN_ERR "can't open the configuration file\n"
 # define EXT_ERR "invalid file, make sure the filename format is (file.cub)\n"
@@ -71,6 +79,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	**ft_split(char const *s, char c);
 char	**ft_divide_str(char *str);
 int		is_valid_map_char(char c);
+int		is_player(char c);
 
 // read_all_file
 char	*get_next_line(int fd);
