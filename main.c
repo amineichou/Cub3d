@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:53:10 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/13 17:43:06 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/15 16:30:37 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@
 
 int	main(int ac, char **av)
 {
+	t_config	*game_config;
+
 	// atexit(leaks);
-	if (parser(ac, av))
+	game_config = parser(ac, av);
+	if (game_config)
 	{
 		// code here
 	}

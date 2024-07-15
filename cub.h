@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/15 15:30:38 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/15 16:44:49 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,34 +59,38 @@ typedef enum s_direction
 # define OPEN_ERR "can't open the configuration file\n"
 # define EXT_ERR "invalid file, make sure the filename format is (file.cub)\n"
 # define MALLOC_ERR "can't allocat this region, malloc error\n"
+# define MAP_ERR "invalid map. newlines in/after map\n"
+# define MAP_ERR_WALL "invalid map, not surrounded by walls\n"
+# define MAP_ERR_CHARS "invalid map, bad charachters in presenting.\n"
+# define PARSE_ERR "no valid arguments\n"
 // garbage collector
-void	*g_malloc(size_t size, t_g_malloc mode);
+void		*g_malloc(size_t size, t_g_malloc mode);
 
 // utils
-int		ft_strlen(char *str);
-int		ft_strcmp(char *s1, char *s2);
-void	ft_printerror(char *msg);
-char	*ft_strrchr(char *s, int c);
-char	*ft_strjoin(char *first, char *second);
-int		ft_strsearch(char *str, char c);
-char	*ft_strdup(char *str);
-char	*ft_strldup(char *s1, int lenght);
-int		ft_isspace(char c);
-int		ft_isemptystr(char *str);
-char	*ft_trim_spaces(char *str);
-char	*get_line(char *file_content, int count);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char	**ft_split(char const *s, char c);
-char	**ft_divide_str(char *str);
-int		is_valid_map_char(char c);
-int		is_player(char c);
+int			ft_strlen(char *str);
+int			ft_strcmp(char *s1, char *s2);
+void		ft_printerror(char *msg);
+char		*ft_strrchr(char *s, int c);
+char		*ft_strjoin(char *first, char *second);
+int			ft_strsearch(char *str, char c);
+char		*ft_strdup(char *str);
+char		*ft_strldup(char *s1, int lenght);
+int			ft_isspace(char c);
+int			ft_isemptystr(char *str);
+char		*ft_trim_spaces(char *str);
+char		*get_line(char *file_content, int count);
+size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char		**ft_split(char const *s, char c);
+char		**ft_divide_str(char *str);
+int			is_valid_map_char(char c);
+int			is_player(char c);
 
 // read_all_file
-char	*get_next_line(int fd);
+char		*get_next_line(int fd);
 
 // parser
 int			parse_map(char **map);
-int			parser(int ac, char **filename);
+t_config	*parser(int ac, char **filename);
 t_config	*make_config(char *filename);
 char		**make_map(char *map_str, int s_row, int s_clm);
 

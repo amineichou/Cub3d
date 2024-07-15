@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:44:12 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/10 21:23:05 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/15 16:45:34 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*ft_strjoin(char *first, char *second)
 		return (ft_strdup(second));
 	else if (!second)
 		return (ft_strdup(first));
-	res = g_malloc(sizeof(char) * (ft_strlen(first) + ft_strlen(second) + 1), ALLOCATE);
+	res = g_malloc(sizeof(char) * (ft_strlen(first)
+				+ ft_strlen(second) + 1), ALLOCATE);
 	if (!res)
 		return (first = NULL, NULL);
 	i = 0;
@@ -74,7 +75,8 @@ char	*ft_strldup(char *s1, int lenght)
 
 int	ft_isspace(char c)
 {
-	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r')
+	if (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r')
 		return (1);
 	return (0);
 }

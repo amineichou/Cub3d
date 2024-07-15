@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 14:08:43 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/13 16:49:19 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/15 16:38:48 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	g_free(t_garbage *lst)
 
 	while (lst)
 	{
-		tofree  =lst;
+		tofree = lst;
 		lst = lst->next;
 		free(tofree->allocated);
 		tofree->allocated = NULL;

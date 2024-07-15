@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 17:04:30 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/15 15:43:51 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/15 16:44:02 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ int	wall_surrounded(char **map)
 		{
 			if (map[y][x] == '0')
 			{
-				if (!is_inwall(map, x, y, TOP) || !is_inwall(map, x, y, RIGHT) 
-				|| !is_inwall(map, x, y, BOTTOM) || !is_inwall(map, x, y, LEFT))
-					return (ft_printerror("invalid map, not surrounded by walls\n"), -1);
+				if (!is_inwall(map, x, y, TOP)
+					|| !is_inwall(map, x, y, RIGHT)
+					|| !is_inwall(map, x, y, BOTTOM)
+					|| !is_inwall(map, x, y, LEFT))
+					return (ft_printerror(MAP_ERR_WALL), -1);
 			}
 			x++;
 		}
@@ -82,7 +84,7 @@ int	non_valid_chars(char **map)
 		while (map[y][x])
 		{
 			if (!is_valid_map_char(map[y][x]))
-				return (ft_printerror("invalid map, bad charachters in presenting.\n"), -1);
+				return (ft_printerror(MAP_ERR_CHARS), -1);
 			x++;
 		}
 		y++;
@@ -107,7 +109,8 @@ int	is_duplicate_player(char **map)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E' || map[y][x] == 'W')
+			if (map[y][x] == 'N' || map[y][x] == 'S'
+				|| map[y][x] == 'E' || map[y][x] == 'W')
 				player++;
 			if (player > 2)
 				return (ft_printerror("invalid map, duplicate player.\n"), 1);
@@ -120,7 +123,7 @@ int	is_duplicate_player(char **map)
 
 int	parse_map(char **map)
 {
-	if (non_valid_chars(map) == -1 
+	if (non_valid_chars(map) == -1
 		|| wall_surrounded(map) == -1
 		|| is_duplicate_player(map))
 		return (-1);

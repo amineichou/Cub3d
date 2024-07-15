@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:32:15 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/14 20:28:39 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/15 16:39:39 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	**get_map(int fd, char *line)
 	while (line)
 	{
 		if (line && ft_isemptystr(line))
-			return (ft_printerror("invalid map. newlines in/after map\n"), NULL);
+			return (ft_printerror(MAP_ERR), NULL);
 		map_str = ft_strjoin(map_str, line);
 		map_colmun++;
 		if (map_row < ft_strlen(line))
