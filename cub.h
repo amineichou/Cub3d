@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/15 16:44:49 by moichou          ###   ########.fr       */
+/*   Updated: 2024/07/31 22:01:25 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,70 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <math.h>
-# include <mlx.h>
 # include <fcntl.h>
 # include <limits.h>
+#include "MLX42.h"
 
 # define BUFFER_SIZE 500
+# define WIDTH 832
+# define HEIGHT 640
+# define MAPX  13
+# define MAPY  10
+# define TILE_SIZE 64
+# define FOV 60 * (M_PI / 180)
+# define NUM_RAYS WIDTH
+# define MINIMAP_SCALE_FACTOR 0.2
+
+typedef struct s_point
+{
+    int x;
+    int y;
+}   t_point;
+
+typedef struct s_player
+{
+    float xposition;
+    float yposition;
+    float xpixel;
+    float ypixel;
+    float radius;
+    float walk_speed;
+    float turn_speed;
+    float angle;
+}   t_player;
+
+typedef struct s_ray
+{
+    float   ray_angle;
+    float   wall_hitx;
+    float   wall_hity;
+    float   distance;
+    int     hit_vertical;
+	int		hit_horizontal;
+    int     up;
+    int     down;
+    int     left;
+    int     right;
+    char     wall_hit_content;
+}   t_ray;
+
+typedef struct s_cub
+{
+    mlx_t*          mlx;
+    mlx_image_t*    image;
+    t_player        player;
+    t_ray           rays[WIDTH];
+    char            map[MAPY][MAPX];
+    int*            color_buffer;
+}   t_cub;
+
+typedef struct s_data_rays
+{
+    float xintercept;
+    float yintercept;
+    float xstep;
+    float ystep;
+}   t_data_rays;
 
 typedef struct s_config
 {
@@ -93,5 +152,22 @@ int			parse_map(char **map);
 t_config	*parser(int ac, char **filename);
 t_config	*make_config(char *filename);
 char		**make_map(char *map_str, int s_row, int s_clm);
+
+// raycasting
+t_ray   check_horizontal(t_cub *cub, int ray_id);
+t_ray   check_vertical(t_cub *cub, int ray_id);
+float	ft_periodic(float angle);
+void    cast_rays(t_cub *cub);
+int     is_wall(t_cub *cub, float xpixel, float ypixel);
+
+// player
+void    update_player_position(t_cub* cub);
+void	ft_init_player(t_player* player);
+
+// drawing
+int		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+void	draw_line(t_point start_point, t_point end_point, t_cub *cub, int color);
+void	clear_image(mlx_image_t* image);
+void    draw_3d(t_cub *cub);
 
 #endif
