@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:30:44 by skarim            #+#    #+#             */
-/*   Updated: 2024/07/31 17:31:00 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/02 11:22:58 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ t_ray check_horizontal_collisions(t_cub *cub, int ray_id, t_data_rays data)
         {
             horizontal_ray.wall_hitx = next_horz_hitx;
             horizontal_ray.wall_hity = next_horz_hity;
-            horizontal_ray.wall_hit_content = cub->map[(int)floor(next_horz_hity / TILE_SIZE)][(int)floor(next_horz_hitx / TILE_SIZE)];
             horizontal_ray.hit_horizontal = 1;
             horizontal_ray.hit_vertical = 0;
             break;
