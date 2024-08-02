@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:07:25 by skarim            #+#    #+#             */
-/*   Updated: 2024/07/31 22:07:23 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/01 17:57:49 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,26 @@ void	update_player_position(t_cub *cub)
 
 	new_xpixel = cub->player.xpixel;
 	new_ypixel = cub->player.ypixel;
-	if (mlx_is_key_down(cub->mlx, MLX_KEY_UP))
-	{
-		new_xpixel += cub->player.walk_speed * cos(cub->player.angle);
-		new_ypixel -= cub->player.walk_speed * sin(cub->player.angle);
-	}
-	if (mlx_is_key_down(cub->mlx, MLX_KEY_DOWN))
-	{
-		new_xpixel -= cub->player.walk_speed * cos(cub->player.angle);
-		new_ypixel += cub->player.walk_speed * sin(cub->player.angle);
-	}
+	if (mlx_is_key_down(cub->mlx, MLX_KEY_W))
+    {
+        new_xpixel += cub->player.walk_speed * cos(cub->player.angle);
+        new_ypixel -= cub->player.walk_speed * sin(cub->player.angle);
+    }
+    if (mlx_is_key_down(cub->mlx, MLX_KEY_S))
+    {
+        new_xpixel -= cub->player.walk_speed * cos(cub->player.angle);
+        new_ypixel += cub->player.walk_speed * sin(cub->player.angle);
+    }
+    if (mlx_is_key_down(cub->mlx, MLX_KEY_A))
+    {
+        new_xpixel += cub->player.walk_speed * cos(cub->player.angle + M_PI_2);
+        new_ypixel -= cub->player.walk_speed * sin(cub->player.angle + M_PI_2);
+    }
+    if (mlx_is_key_down(cub->mlx, MLX_KEY_D))
+    {
+        new_xpixel += cub->player.walk_speed * cos(cub->player.angle - M_PI_2);
+        new_ypixel -= cub->player.walk_speed * sin(cub->player.angle - M_PI_2);
+    }
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_RIGHT))
 		cub->player.angle = ft_periodic(cub->player.angle - cub->player.turn_speed);
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_LEFT))
