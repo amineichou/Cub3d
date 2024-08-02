@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:32:05 by skarim            #+#    #+#             */
-/*   Updated: 2024/07/31 17:32:18 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/02 11:06:30 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_init_ray(t_cub *cub, float ray_angle, int ray_id)
     cub->rays[ray_id].wall_hitx = 0;
     cub->rays[ray_id].wall_hity = 0;
     cub->rays[ray_id].distance = 0;
+    cub->rays[ray_id].hit_horizontal = 0;
+    cub->rays[ray_id].hit_vertical = 0;
     cub->rays[ray_id].up = cub->rays[ray_id].ray_angle > 0 && cub->rays[ray_id].ray_angle < M_PI;
     cub->rays[ray_id].down = !cub->rays[ray_id].up;
     cub->rays[ray_id].right = cub->rays[ray_id].ray_angle > 3 * M_PI / 2 || cub->rays[ray_id].ray_angle < M_PI / 2;
