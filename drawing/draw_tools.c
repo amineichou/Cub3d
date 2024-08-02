@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:08:37 by skarim            #+#    #+#             */
-/*   Updated: 2024/07/31 21:06:17 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/01 22:37:47 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ int ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 /*
 Put a pixel in a specify x and y
 */
-void    plot(int x, int y, t_cub *cub, int color)
+void	plot(int x, int y, t_cub *cub, int color)
 {
-    mlx_put_pixel(cub->image, x, y, color);
+    if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT) {
+        mlx_put_pixel(cub->image, x, y, color);
+    }
 }
 
 /*
