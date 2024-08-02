@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/31 22:01:25 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/02 11:15:19 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct s_ray
     int     down;
     int     left;
     int     right;
-    char     wall_hit_content;
 }   t_ray;
 
 typedef struct s_cub
