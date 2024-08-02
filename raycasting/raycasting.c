@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:32:05 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/02 11:06:30 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/02 11:19:56 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ft_check(t_cub *cub, t_ray vertical_ray, t_ray horizontal_ray, int ray_id)
 	{
 		cub->rays[ray_id].wall_hitx = horizontal_ray.wall_hitx;
 		cub->rays[ray_id].wall_hity = horizontal_ray.wall_hity;
-		cub->rays[ray_id].wall_hit_content = horizontal_ray.wall_hit_content;
 		cub->rays[ray_id].hit_vertical = 0;
         cub->rays[ray_id].hit_horizontal = 1;
 		cub->rays[ray_id].distance = sqrt(hor_distance);
@@ -67,7 +66,6 @@ void	ft_check(t_cub *cub, t_ray vertical_ray, t_ray horizontal_ray, int ray_id)
 	{
 		cub->rays[ray_id].wall_hitx = vertical_ray.wall_hitx;
 		cub->rays[ray_id].wall_hity = vertical_ray.wall_hity;
-		cub->rays[ray_id].wall_hit_content = vertical_ray.wall_hit_content;
 		cub->rays[ray_id].hit_vertical = 1;
         cub->rays[ray_id].hit_horizontal = 0;
 		cub->rays[ray_id].distance = sqrt(ver_distance);
