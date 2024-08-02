@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:14:04 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/02 11:23:10 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/02 18:21:17 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_ray   check_vertical_collisions(t_cub *cub, int ray_id, t_data_rays data)
 
     next_vert_hitx = data.xintercept;
     next_vert_hity = data.yintercept;
-    while (next_vert_hitx >= 0 && next_vert_hitx <= WIDTH && next_vert_hity >= 0 && next_vert_hity <= HEIGHT)
+    while (next_vert_hitx >= 0 && next_vert_hitx <= MAPX * TILE_SIZE && next_vert_hity >= 0 && next_vert_hity <= MAPY * TILE_SIZE)
     {
         if (is_wall(cub, next_vert_hitx - cub->rays[ray_id].left, next_vert_hity))
         {
