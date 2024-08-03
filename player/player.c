@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:07:25 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/01 17:57:49 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/03 13:32:27 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ Initialize player properties
 */
 void	ft_init_player(t_player* player)
 {
-	player->angle = M_PI * 0 / 2;
-    player->xposition = WIDTH / (2 * TILE_SIZE);
-    player->yposition = HEIGHT / (2 * TILE_SIZE);
     player->radius = 7;
     player->turn_speed = 3 * M_PI / 180.0;
     player->walk_speed = 3;

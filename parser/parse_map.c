@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 17:04:30 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/15 16:44:02 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/03 13:23:26 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	is_inwall(char **map, int x, int y, t_direction dir)
 		while (x && map[y][x] == '0')
 			x--;
 	}
-	if (map[y][x] != '1')
+	if (map[y][x] != '1' && !is_player(map[y][x]))
 		return (0);
 	return (1);
 }
@@ -109,8 +109,7 @@ int	is_duplicate_player(char **map)
 		x = 0;
 		while (map[y][x])
 		{
-			if (map[y][x] == 'N' || map[y][x] == 'S'
-				|| map[y][x] == 'E' || map[y][x] == 'W')
+			if (is_player(map[y][x]))
 				player++;
 			if (player > 2)
 				return (ft_printerror("invalid map, duplicate player.\n"), 1);

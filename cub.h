@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/02 11:15:19 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/03 13:16:41 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,15 @@
 # define BUFFER_SIZE 500
 # define WIDTH 832
 # define HEIGHT 640
-# define MAPX  13
-# define MAPY  10
+// # define MAPX  24
+// # define MAPY  16
 # define TILE_SIZE 64
 # define FOV 60 * (M_PI / 180)
 # define NUM_RAYS WIDTH
 # define MINIMAP_SCALE_FACTOR 0.2
+
+int MAPX;
+int	MAPY;
 
 typedef struct s_point
 {
@@ -70,7 +73,7 @@ typedef struct s_cub
     mlx_image_t*    image;
     t_player        player;
     t_ray           rays[WIDTH];
-    char            map[MAPY][MAPX];
+    char            **map;
     int*            color_buffer;
 }   t_cub;
 

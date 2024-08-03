@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:32:15 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/15 16:39:39 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/02 18:35:15 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static char	**get_map(int fd, char *line)
 		line = get_next_line(fd);
 		i++;
 	}
+	MAPY = map_colmun;
+	MAPX = map_row;
 	map = make_map(map_str, map_row, map_colmun);
 	return (map);
 }
