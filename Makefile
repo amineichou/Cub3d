@@ -16,7 +16,7 @@ all: $(NAME)
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME) libmlx42.a -Iinclude -lglfw -L"/Users/moichou/.brew/opt/glfw/lib"
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME) libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib"
 
 
 clean:
