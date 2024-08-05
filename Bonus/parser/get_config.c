@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:32:15 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/05 14:45:03 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/05 22:46:56 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,24 +99,6 @@ static t_config	*get_args(t_config *config, int fd)
 	return (config);
 }
 
-
-mlx_image_t	*ft_get_image(t_cub *cub, char *pathname)
-{
-	mlx_texture_t	*texture;
-	mlx_image_t		*image;
-
-	pathname++;
-	texture = mlx_load_png(pathname);
-	printf("%s\n", pathname);
-	if (!texture)
-	{
-		ft_printerror("texture file error to open\n");
-		exit(1);
-	}
-	image = mlx_texture_to_image(cub->mlx, texture);
-	mlx_delete_texture(texture);
-	return (image);
-}
 
 /*
 	=> parsing args
