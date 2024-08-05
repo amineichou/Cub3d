@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/05 22:07:42 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/05 22:45:57 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,5 +189,6 @@ int		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void	draw_line(t_point start_point, t_point end_point, t_cub *cub, int color);
 void	clear_image(mlx_image_t* image);
 void    draw_3d(t_cub *cub);
+void	ft_load_images(t_cub *cub, t_config *game_config);
 
 #endif
