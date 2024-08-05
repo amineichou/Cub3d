@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:53:10 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/03 13:34:53 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/05 15:43:15 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void    ft_hook(void* param)
     clear_image(cub->image);
 	cast_rays(cub);
     draw_3d(cub);
+    
+    // uint32_t *textures = malloc(sizeof(uint32_t) )
 }
 
 
@@ -66,56 +68,53 @@ int ft_get_player_postion(t_player *player, char **map)
     return (0);
 }
 
+
+void	ft_load_images(t_cub *cub, t_config *game_config)
+{
+	cub->no = ft_get_image(cub, game_config->no);
+	cub->so = ft_get_image(cub, game_config->so);
+	cub->we = ft_get_image(cub, game_config->we);
+	cub->ea = ft_get_image(cub, game_config->ea);
+}
+
+
+void	ft_init_cub(t_cub *cub, t_config *game_config)
+{
+	if (!(cub->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", false)))
+    {
+        perror(mlx_strerror(mlx_errno));
+        return ;
+    }
+	cub->map = game_config->map;
+	cub->f[3] = 255;
+	cub->c[3] = 255;
+    if (!ft_get_player_postion(&cub->player, cub->map))
+        return ;
+	ft_load_images(cub, game_config);
+	ft_init_player(&(cub->player));
+	if (!(cub->image = mlx_new_image(cub->mlx, WIDTH, HEIGHT)))
+    {
+        mlx_close_window(cub->mlx);
+        perror(mlx_strerror(mlx_errno));
+        return ;
+    }
+	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) == -1)
+    {
+        mlx_close_window(cub->mlx);
+        perror(mlx_strerror(mlx_errno));
+        return ;
+    }
+}
+
 int main(int ac, char **av)
 {
     t_config	*game_config;
     game_config = parser(ac, av);
     if (!game_config)
         return (EXIT_FAILURE);
-
-    // int x;
-    // int y;
-    // y = 0;
-    // while (game_config->map[y])
-    // {
-    //     x = 0;
-    //     while (game_config->map[y][x])
-    //     {
-    //       printf("%c", game_config->map[y][x]);
-    //     x++;
-    //     }
-    //     printf("\n");
-    //     y++;
-    // }
-    
-    t_cub   cub = {
-        .mlx = NULL,
-        .image = NULL,
-        .player = {0},
-        .map = game_config->map,
-    };
-    if (!ft_get_player_postion(&cub.player, cub.map))
-        return (EXIT_FAILURE);
-    if (!(cub.mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
-    {
-        perror(mlx_strerror(mlx_errno));
-        return (EXIT_FAILURE);
-    }
-    if (!(cub.image = mlx_new_image(cub.mlx, WIDTH, HEIGHT)))
-    {
-        mlx_close_window(cub.mlx);
-        perror(mlx_strerror(mlx_errno));
-        return (EXIT_FAILURE);
-    }
-    printf("[%f , %f]\n", cub.player.xposition, cub.player.yposition);
-    ft_init_player(&cub.player);
-    if (mlx_image_to_window(cub.mlx, cub.image, 0, 0) == -1)
-    {
-        mlx_close_window(cub.mlx);
-        perror(mlx_strerror(mlx_errno));
-        return (EXIT_FAILURE);
-    }
-    mlx_image_to_window(cub.mlx, cub.image, 0, 0);
+    t_cub   cub;
+    ft_init_cub(&cub, game_config);
+	mlx_image_to_window(cub.mlx, cub.image, 0, 0);
     mlx_loop_hook(cub.mlx, ft_hook, &cub);
     mlx_loop(cub.mlx);
     mlx_terminate(cub.mlx);
