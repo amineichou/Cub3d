@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/05 12:42:57 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/06 21:02:04 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,5 @@ void	draw_line(t_point start_point, t_point end_point, t_cub *cub, int color);
 void	clear_image(mlx_image_t* image);
 void    draw_3d(t_cub *cub);
 void    ft_minimap(t_cub *cub);
-void	drawMinimap(t_cub* cub);
 
 #endif
