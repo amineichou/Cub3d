@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/06 21:02:04 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/06 21:49:28 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_ray
     int     right;
 }   t_ray;
 
+
 typedef struct s_cub
 {
     mlx_t*          mlx;
@@ -77,6 +78,12 @@ typedef struct s_cub
     t_ray           rays[WIDTH];
     char            **map;
     int*            color_buffer;
+	mlx_image_t		*no;
+	mlx_image_t		*so;
+	mlx_image_t		*we;
+	mlx_image_t		*ea;
+    int             f[4];
+    int             c[4];
 }   t_cub;
 
 typedef struct s_data_rays
@@ -126,6 +133,10 @@ typedef enum s_direction
 # define MAP_ERR_WALL "invalid map, not surrounded by walls\n"
 # define MAP_ERR_CHARS "invalid map, bad charachters in presenting.\n"
 # define PARSE_ERR "no valid arguments\n"
+
+// main
+void	ft_load_images(t_cub *cub, t_config *game_config);
+
 // garbage collector
 void		*g_malloc(size_t size, t_g_malloc mode);
 
@@ -175,5 +186,6 @@ void	draw_line(t_point start_point, t_point end_point, t_cub *cub, int color);
 void	clear_image(mlx_image_t* image);
 void    draw_3d(t_cub *cub);
 void    ft_minimap(t_cub *cub);
+mlx_image_t	*ft_get_image(t_cub *cub, char *pathname);
 
 #endif

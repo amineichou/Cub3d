@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 14:53:09 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/05 14:53:17 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/06 21:48:34 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,22 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (res * sign);
+}
+
+mlx_image_t	*ft_get_image(t_cub *cub, char *pathname)
+{
+	mlx_texture_t	*texture;
+	mlx_image_t		*image;
+
+	pathname++;
+	texture = mlx_load_png(pathname);
+	printf("%s\n", pathname);
+	if (!texture)
+	{
+		ft_printerror("texture file error to open\n");
+		exit(1);
+	}
+	image = mlx_texture_to_image(cub->mlx, texture);
+	mlx_delete_texture(texture);
+	return (image);
 }

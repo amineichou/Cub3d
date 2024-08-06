@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:50:30 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/05 22:15:31 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/06 21:45:12 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	clear_image(mlx_image_t* image)
 	}
 }
 
-int mlx_get_pixel(mlx_image_t *image, int x, int y) {
+int mlx_get_pixel(mlx_image_t *image, const uint32_t x, const uint32_t y) {
     if (x < 0 || x >= image->width || y < 0 || y >= image->height) {
         return 0;
     }
@@ -98,6 +98,7 @@ void    draw_3d(t_cub *cub)
         else
             wall_hit_x = fmod(cub->rays[i].wall_hitx, TILE_SIZE);
 
+
         int tex_x = wall_hit_x * ((float)texture->width / TILE_SIZE);
 
         // Draw the wall strip
@@ -111,8 +112,10 @@ void    draw_3d(t_cub *cub)
             y++;
         }
         float ceil = -1;
+        // ft_load_images()
         while (++ceil < top_point.y)
-            mlx_put_pixel(cub->image, i, ceil, ft_pixel(20, 1, 55, 255));
+            mlx_put_pixel(cub->image, i, ceil, ft_pixel(255, 255, 255, 255));
+            // mlx_put_pixel(cub->image, i, ceil, ft_pixel(20, 1, 55, 255));
         float floor = bottom_point.y - 1;
         while (++floor < HEIGHT)
             mlx_put_pixel(cub->image, i, floor, ft_pixel(16, 16, 33, 255));
