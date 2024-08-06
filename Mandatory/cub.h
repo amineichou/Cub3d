@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/03 13:16:41 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/05 22:45:57 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 #include "MLX42.h"
 
 # define BUFFER_SIZE 500
-# define WIDTH 832
-# define HEIGHT 640
+# define WIDTH 1080
+# define HEIGHT 720
 // # define MAPX  24
 // # define MAPY  16
-# define TILE_SIZE 64
+# define TILE_SIZE 40
 # define FOV 60 * (M_PI / 180)
 # define NUM_RAYS WIDTH
 # define MINIMAP_SCALE_FACTOR 0.2
@@ -75,6 +75,12 @@ typedef struct s_cub
     t_ray           rays[WIDTH];
     char            **map;
     int*            color_buffer;
+	mlx_image_t		*no;
+	mlx_image_t		*so;
+	mlx_image_t		*we;
+	mlx_image_t		*ea;
+    int             f[4];
+    int             c[4];
 }   t_cub;
 
 typedef struct s_data_rays
@@ -116,6 +122,13 @@ typedef enum s_direction
 	LEFT,
 }	t_direction;
 
+typedef struct s_offset
+{
+	int	x_off;
+	int	y_off;
+}	t_offset;
+
+
 // define errors
 # define OPEN_ERR "can't open the configuration file\n"
 # define EXT_ERR "invalid file, make sure the filename format is (file.cub)\n"
@@ -124,6 +137,7 @@ typedef enum s_direction
 # define MAP_ERR_WALL "invalid map, not surrounded by walls\n"
 # define MAP_ERR_CHARS "invalid map, bad charachters in presenting.\n"
 # define PARSE_ERR "no valid arguments\n"
+
 // garbage collector
 void		*g_malloc(size_t size, t_g_malloc mode);
 
@@ -145,6 +159,7 @@ char		**ft_split(char const *s, char c);
 char		**ft_divide_str(char *str);
 int			is_valid_map_char(char c);
 int			is_player(char c);
+int			ft_atoi(const char *str);
 
 // read_all_file
 char		*get_next_line(int fd);
@@ -154,6 +169,9 @@ int			parse_map(char **map);
 t_config	*parser(int ac, char **filename);
 t_config	*make_config(char *filename);
 char		**make_map(char *map_str, int s_row, int s_clm);
+
+// get_config file
+mlx_image_t		*ft_get_image(t_cub *cub, char *pathname);
 
 // raycasting
 t_ray   check_horizontal(t_cub *cub, int ray_id);
@@ -171,5 +189,6 @@ int		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void	draw_line(t_point start_point, t_point end_point, t_cub *cub, int color);
 void	clear_image(mlx_image_t* image);
 void    draw_3d(t_cub *cub);
+void	ft_load_images(t_cub *cub, t_config *game_config);
 
 #endif
