@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 17:54:27 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/07 14:41:10 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/07 17:17:19 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,14 @@ void	draw_minimap_pixel(t_cub *cub, int x, int y)
 	color = ft_pixel(0, 0, 0, 255);
 	if (xposition < MAPX && xposition >= 0
 		&& yposition < MAPY && yposition >= 0)
+	{
 		if (cub->map[yposition][xposition] == '1')
 			color = ft_pixel(255, 255, 255, 255);
+		else if (cub->map[yposition][xposition] == 'D'
+				&& (cub->player.xposition != xposition
+				|| cub->player.yposition != yposition))
+			color = ft_pixel(255, 255, 255, 35);
+	}
 	mlx_put_pixel(cub->image, (MINIMAP_RADIUS + x + MINIMAP_PAD),
 		(MINIMAP_RADIUS + y + MINIMAP_PAD), color);
 }
