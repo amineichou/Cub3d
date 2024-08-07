@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/06 21:49:28 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/07 14:04:17 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 #include "MLX42.h"
 
 # define BUFFER_SIZE 500
-# define WIDTH 832
-# define HEIGHT 640
+# define WIDTH 1632
+# define HEIGHT 1440
 // # define MAPX  24
 // # define MAPY  16
 # define TILE_SIZE 64
@@ -32,7 +32,7 @@
 # define NUM_RAYS WIDTH
 # define MINIMAP_SCALE_FACTOR 0.4
 #define MINIMAP_PAD 13
-
+#define MINIMAP_RADIUS 4 * TILE_SIZE * MINIMAP_SCALE_FACTOR
 
 int MAPX;
 int	MAPY;
@@ -187,5 +187,6 @@ void	clear_image(mlx_image_t* image);
 void    draw_3d(t_cub *cub);
 void    ft_minimap(t_cub *cub);
 mlx_image_t	*ft_get_image(t_cub *cub, char *pathname);
+void	draw_rays(t_cub *cub);
 
 #endif
