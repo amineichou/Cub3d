@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/07 14:04:17 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/07 14:41:02 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 #include "MLX42.h"
 
 # define BUFFER_SIZE 500
-# define WIDTH 1632
-# define HEIGHT 1440
+# define WIDTH 1080
+# define HEIGHT 720
 // # define MAPX  24
 // # define MAPY  16
 # define TILE_SIZE 64
@@ -158,6 +158,7 @@ char		**ft_split(char const *s, char c);
 char		**ft_divide_str(char *str);
 int			is_valid_map_char(char c);
 int			is_player(char c);
+bool		is_door(char c);
 
 // read_all_file
 char		*get_next_line(int fd);

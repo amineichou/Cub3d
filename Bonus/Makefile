@@ -8,7 +8,7 @@ SRC = main.c \
 		utils/utils_1.c utils/utils_2.c utils/utils_3.c utils/utils_4.c utils/ft_split.c \
 		minimap/minimap.c minimap/minimap_utils.c
 CC = cc
-FLAGS = -Wall -Wextra -Werror -Ofast -g -fsanitize=address 
+FLAGS = -Wall -Wextra -Werror -O3 -g -fsanitize=address 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

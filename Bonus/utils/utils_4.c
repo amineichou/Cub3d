@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 14:53:09 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/06 21:48:34 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/07 11:46:57 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,11 @@ mlx_image_t	*ft_get_image(t_cub *cub, char *pathname)
 	image = mlx_texture_to_image(cub->mlx, texture);
 	mlx_delete_texture(texture);
 	return (image);
+}
+
+bool	is_door(char c)
+{
+	if (c == 'D')
+		return (true);
+	return (false);
 }
