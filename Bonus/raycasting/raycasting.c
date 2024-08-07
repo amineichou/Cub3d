@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:32:05 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/05 15:17:00 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/07 15:04:43 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int     is_wall(t_cub *cub, float xpixel, float ypixel)
     newy = floor(ypixel / TILE_SIZE);
 	if (newx < 0 || newx >= MAPX || newy < 0 || newy >= MAPY)
         return 0;
-    return (cub->map[newy][newx] == '1');
+    return (cub->map[newy][newx] == '1' || cub->map[newy][newx] == 'D');
 }
 
 /*

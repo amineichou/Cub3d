@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/07 17:20:15 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/07 17:24:14 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define NUM_RAYS WIDTH
 # define MINIMAP_SCALE_FACTOR 0.4
 #define MINIMAP_PAD 13
-
+#define MINIMAP_RADIUS 4 * TILE_SIZE * MINIMAP_SCALE_FACTOR
 
 int MAPX;
 int	MAPY;
@@ -198,6 +198,7 @@ void	clear_image(mlx_image_t* image);
 void    draw_3d(t_cub *cub);
 void    ft_minimap(t_cub *cub);
 mlx_image_t	*ft_get_image(t_cub *cub, char *pathname);
+void	draw_rays(t_cub *cub);
 
 
 // animation
