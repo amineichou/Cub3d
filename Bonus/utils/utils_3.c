@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 21:37:05 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/15 16:45:44 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/07 12:00:47 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	is_valid_map_char(char c)
 {
 	if (c == '1' || c == '0' || c == 'N'
 		|| c == 'S' || c == 'E' || c == 'W'
-		|| ft_isspace(c))
+		|| ft_isspace(c) || c == 'D')
 		return (1);
 	return (0);
 }
