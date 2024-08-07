@@ -6,9 +6,10 @@ SRC = main.c \
 		garbage_collector.c parser/parser.c parser/parse_map.c \
 		parser/get_config.c parser/get_next_line.c parser/make_map.c \
 		utils/utils_1.c utils/utils_2.c utils/utils_3.c utils/utils_4.c utils/ft_split.c \
-		minimap/minimap.c
+		minimap/minimap.c animation/pov.c \
+
 CC = cc
-FLAGS = -Wall -Wextra -Werror -O3 -g -fsanitize=address 
+FLAGS = -O3 -g -fsanitize=address 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
