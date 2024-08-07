@@ -8,7 +8,7 @@ SRC = main.c \
 		utils/utils_1.c utils/utils_2.c utils/utils_3.c utils/ft_split.c \
 		utils/utils_4.c
 CC = cc
-FLAGS =  -fsanitize=address -g#-Wall -Wextra -Werror
+FLAGS = -O3 -fsanitize=address -g#-Wall -Wextra -Werror
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

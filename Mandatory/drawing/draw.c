@@ -6,11 +6,10 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:50:30 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/05 22:43:54 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/07 10:56:46 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
 #include "../cub.h"
 
 void	clear_image(mlx_image_t* image)
@@ -71,7 +70,7 @@ void    draw_3d(t_cub *cub)
             top_point.y = 0;
         if (bottom_point.y > HEIGHT)
             bottom_point.y = HEIGHT;
-        color = cub->rays[i].hit_vertical ? ft_pixel(128, 0, 0, 255) : ft_pixel(160, 82, 45, 255);
+        // color = cub->rays[i].hit_vertical ? ft_pixel(128, 0, 0, 255) : ft_pixel(160, 82, 45, 255);
         // draw_line(top_point, bottom_point, cub, color);
         // get xoffset and yoffeset
         // get_offset(cub, i);
@@ -111,9 +110,15 @@ void    draw_3d(t_cub *cub)
             mlx_put_pixel(cub->image, i, y, tex_color);
             y++;
         }
+
+
+        
+
+        
         float ceil = -1;
         while (++ceil < top_point.y)
-            mlx_put_pixel(cub->image, i, ceil, ft_pixel(20, 1, 55, 255));
+            mlx_put_pixel(cub->image, i, ceil, ft_pixel(255, 255, 255, 255));
+            // mlx_put_pixel(cub->image, i, ceil, ft_pixel(20, 1, 55, 255));
         float floor = bottom_point.y - 1;
         while (++floor < HEIGHT)
             mlx_put_pixel(cub->image, i, floor, ft_pixel(16, 16, 33, 255));
