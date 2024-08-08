@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:53:10 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/06 21:47:02 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/07 17:20:26 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void    ft_hook(void* param)
 {
     t_cub*  cub;
     
-    cub = param;
+    cub = (t_cub*)param;
     if (mlx_is_key_down(cub->mlx, MLX_KEY_ESCAPE))
         mlx_close_window(cub->mlx);
     update_player_position(cub);
@@ -115,6 +115,7 @@ int main(int ac, char **av)
     ft_init_cub(&cub, game_config);
 	mlx_image_to_window(cub.mlx, cub.image, 0, 0);
     mlx_loop_hook(cub.mlx, ft_hook, &cub);
+    ft_pov(&cub, NORMAL);
     mlx_loop(cub.mlx);
     mlx_terminate(cub.mlx);
     g_malloc(0, FREE);

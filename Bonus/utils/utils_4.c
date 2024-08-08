@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 14:53:09 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/07 11:46:57 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/07 15:22:02 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,26 @@ bool	is_door(char c)
 	if (c == 'D')
 		return (true);
 	return (false);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*str;
+	int		len;
+	int		nb;
+
+	len = 1;
+	nb = n;
+	while (nb /= 10)
+		len++;
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	while (len--)
+	{
+		str[len] = n % 10 + '0';
+		n /= 10;
+	}
+	return (str);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/07 14:41:02 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/07 17:24:14 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,15 @@ typedef enum s_direction
 	LEFT,
 }	t_direction;
 
+
+typedef enum s_actions
+{
+	NORMAL,
+	RELOAD,
+	SHOOT,
+	JUMP,
+}	t_actions;
+
 // define errors
 # define OPEN_ERR "can't open the configuration file\n"
 # define EXT_ERR "invalid file, make sure the filename format is (file.cub)\n"
@@ -159,6 +168,7 @@ char		**ft_divide_str(char *str);
 int			is_valid_map_char(char c);
 int			is_player(char c);
 bool		is_door(char c);
+char	    *ft_itoa(int n);
 
 // read_all_file
 char		*get_next_line(int fd);
@@ -189,5 +199,9 @@ void    draw_3d(t_cub *cub);
 void    ft_minimap(t_cub *cub);
 mlx_image_t	*ft_get_image(t_cub *cub, char *pathname);
 void	draw_rays(t_cub *cub);
+
+
+// animation
+void	ft_pov(t_cub *cub, t_actions action);
 
 #endif
