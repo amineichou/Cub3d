@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:38:38 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/07 17:22:05 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/08 18:59:15 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,8 @@ void	ft_render_infinite(t_cub *cub, mlx_image_t *loaded_images[FRAMES])
 
 void	ft_pov(t_cub *cub, t_actions action)
 {
-	mlx_image_t *image;
-
 	if (action == NORMAL)
 	{
-		image = ft_get_single_image(cub, "animation/normal.png");
-		mlx_image_to_window(cub->mlx, image, WIDTH / 6, HEIGHT / 3);
+		mlx_image_to_window(cub->mlx, cub->pov_normal, -180, HEIGHT / 6);
 	}
 }

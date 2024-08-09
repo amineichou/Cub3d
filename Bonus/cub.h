@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/07 17:24:14 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/08 15:12:34 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ typedef struct s_cub
 	mlx_image_t		*so;
 	mlx_image_t		*we;
 	mlx_image_t		*ea;
+    mlx_image_t		*door;
+	mlx_image_t		*pov_normal;
     int             f[4];
     int             c[4];
 }   t_cub;
