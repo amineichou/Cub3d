@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/11 14:50:18 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/11 21:29:30 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,15 @@ typedef struct s_cub
     t_player        player;
     t_ray           rays[WIDTH];
     char            **map;
-    int*            color_buffer;
+	int*            color_buffer;
 	mlx_image_t		*no;
 	mlx_image_t		*so;
 	mlx_image_t		*we;
 	mlx_image_t		*ea;
-    mlx_image_t		*door;
+	mlx_image_t		*door;
 	mlx_image_t		*pov_normal;
-    int             f[4];
-    int             c[4];
+	int				f[4];
+	int				c[4];
 }   t_cub;
 
 typedef struct s_data_rays
@@ -205,6 +205,7 @@ void	draw_rays(t_cub *cub);
 
 
 // animation
-void	ft_pov(t_cub *cub, t_actions action);
+mlx_image_t	**ft_get_frames(t_cub *cub, char *path, int frames);
+void		ft_pov(t_cub *cub, t_actions action);
 
 #endif

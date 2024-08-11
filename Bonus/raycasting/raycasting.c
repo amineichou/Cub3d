@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:32:05 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/11 15:01:05 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/11 21:04:11 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int	is_px_door(t_cub *cub, float xpixel, float ypixel)
 
 	newx = floor(xpixel / TILE_SIZE);
 	newy = floor(ypixel / TILE_SIZE);
-	printf("newx: %d, newy: %d\n", newx, newy);
 	if (newx < 0 || newx >= MAPX || newy < 0 || newy >= MAPY)
 		return (0);
 	return (cub->map[newy][newx] == 'D');
