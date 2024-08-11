@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:53:10 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/10 15:58:00 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/11 16:49:14 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,26 @@ void    ft_hook(void* param)
     draw_3d(cub);
     ft_minimap(cub);
     // drawMinimap(cub);
+}
+
+#include <math.h>
+
+void	ft_mouse_move(double xpos, double ypos, void *param)
+{
+	t_cub	*cub;
+	cub = (t_cub *)param;
+	// Move right (increase x), if xpos indicates rightward movement
+	if (xpos > cub->player.xpixel)
+	{
+		cub->player.angle = ft_periodic(cub->player.angle
+				- cub->player.turn_speed);
+	}
+	// Move left (decrease x), if xpos indicates leftward movement
+	else if (xpos < cub->player.xpixel)
+	{
+		cub->player.angle = ft_periodic(cub->player.angle
+				+ cub->player.turn_speed);
+	}
 }
 
 
@@ -118,6 +138,7 @@ int main(int ac, char **av)
     ft_init_cub(&cub, game_config);
 	mlx_image_to_window(cub.mlx, cub.image, 0, 0);
     mlx_loop_hook(cub.mlx, ft_hook, &cub);
+    mlx_cursor_hook(cub.mlx, ft_mouse_move, &cub);
     ft_pov(&cub, NORMAL);
     mlx_loop(cub.mlx);
     mlx_terminate(cub.mlx);
