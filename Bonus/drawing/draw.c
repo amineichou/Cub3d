@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:50:30 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/06 21:45:12 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/11 14:20:26 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,21 @@ void    draw_3d(t_cub *cub)
         // draw_column_from_texture
         // Select the correct texture based on the ray hit direction
         mlx_image_t *texture;
-        if (cub->rays[i].hit_vertical) {
-            if (cub->rays[i].ray_angle < M_PI / 2 || cub->rays[i].ray_angle > 3 * M_PI / 2) {
-                texture = cub->ea; // East texture
+        if (cub->rays[i].is_door)
+            texture = cub->door;
+        else {
+            if (cub->rays[i].hit_vertical) {
+                if (cub->rays[i].ray_angle < M_PI / 2 || cub->rays[i].ray_angle > 3 * M_PI / 2) {
+                    texture = cub->ea; // East texture
+                } else {
+                    texture = cub->we; // West texture
+                }
             } else {
-                texture = cub->we; // West texture
-            }
-        } else {
-            if (cub->rays[i].ray_angle < M_PI) {
-                texture = cub->no; // North texture
-            } else {
-                texture = cub->so; // South texture
+                if (cub->rays[i].ray_angle < M_PI) {
+                    texture = cub->no; // North texture
+                } else {
+                    texture = cub->so; // South texture
+                }
             }
         }
 
@@ -112,7 +116,6 @@ void    draw_3d(t_cub *cub)
             y++;
         }
         float ceil = -1;
-        // ft_load_images()
         while (++ceil < top_point.y)
             mlx_put_pixel(cub->image, i, ceil, ft_pixel(255, 255, 255, 255));
             // mlx_put_pixel(cub->image, i, ceil, ft_pixel(20, 1, 55, 255));

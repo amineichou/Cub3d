@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:53:10 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/08 18:59:05 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/10 15:58:00 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	ft_init_cub(t_cub *cub, t_config *game_config)
         return ;
     }
     // load door and pov_normal images
-    cub->door = ft_get_image(cub, "../textures/test.png");
+    cub->door = ft_get_image(cub, "../textures/door.png");
     cub->pov_normal = ft_get_image(cub, "../textures/normal.png");
 }
 

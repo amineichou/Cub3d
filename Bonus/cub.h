@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/08 15:12:34 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/11 14:50:18 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@
 # include <math.h>
 # include <fcntl.h>
 # include <limits.h>
+#include <float.h> 
 #include "MLX42.h"
 
 # define BUFFER_SIZE 500
 # define WIDTH 1080
 # define HEIGHT 720
-// # define MAPX  24
-// # define MAPY  16
 # define TILE_SIZE 64
 # define FOV 60 * (M_PI / 180)
 # define NUM_RAYS WIDTH
@@ -63,6 +62,7 @@ typedef struct s_ray
     float   distance;
     int     hit_vertical;
 	int		hit_horizontal;
+    int     is_door;
     int     up;
     int     down;
     int     left;
@@ -187,6 +187,7 @@ t_ray   check_vertical(t_cub *cub, int ray_id);
 float	ft_periodic(float angle);
 void    cast_rays(t_cub *cub);
 int     is_wall(t_cub *cub, float xpixel, float ypixel);
+int	    is_px_door(t_cub *cub, float xpixel, float ypixel);
 
 // player
 void    update_player_position(t_cub* cub);

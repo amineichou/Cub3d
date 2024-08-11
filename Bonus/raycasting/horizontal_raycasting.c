@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_raycasting.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:30:44 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/08 21:32:06 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/11 14:45:22 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ t_ray	check_horizontal_collisions(t_cub *cub, int ray_id, t_data_rays data)
 			horizontal_ray.wall_hity = next_horz_hity;
 			horizontal_ray.hit_horizontal = 1;
 			horizontal_ray.hit_vertical = 0;
+			if (is_px_door(cub, next_horz_hitx, next_horz_hity - cub->rays[ray_id].up))
+				horizontal_ray.is_door = 1;
 			break ;
 		}
 		else

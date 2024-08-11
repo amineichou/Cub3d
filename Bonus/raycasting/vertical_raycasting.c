@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical_raycasting.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:14:04 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/08 21:34:59 by skarim           ###   ########.fr       */
+/*   Updated: 2024/08/11 15:00:10 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ t_ray	check_vertical_collisions(t_cub *cub, int ray_id, t_data_rays data)
 			vertical_ray.wall_hity = next_ver_hity;
 			vertical_ray.hit_vertical = 1;
 			vertical_ray.hit_horizontal = 0;
+			if (is_px_door(cub, next_ver_hitx - cub->rays[ray_id].left, next_ver_hity))
+			{
+				printf("Door hit vertical %d\n", ray_id);
+				vertical_ray.is_door = 1;
+			}
 			break ;
 		}
 		else
