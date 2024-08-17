@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:32:05 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/11 21:04:11 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/17 15:44:45 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,33 +70,39 @@ void	ft_check(t_cub *cub, t_ray vertical_ray,
 	float	hor_distance;
 	float	ver_distance;
 
+	// Calculate the horizontal distance, or set to FLT_MAX if no hit
 	if (horizontal_ray.hit_horizontal)
 		hor_distance = calculate_distance(cub, &horizontal_ray);
 	else
 		hor_distance = FLT_MAX;
+
+	// Calculate the vertical distance, or set to FLT_MAX if no hit
 	if (vertical_ray.hit_vertical)
 		ver_distance = calculate_distance(cub, &vertical_ray);
 	else
 		ver_distance = FLT_MAX;
+
+	// Compare distances and update ray data accordingly
 	if (hor_distance < ver_distance)
 	{
 		cub->rays[ray_id].wall_hitx = horizontal_ray.wall_hitx;
 		cub->rays[ray_id].wall_hity = horizontal_ray.wall_hity;
 		cub->rays[ray_id].hit_horizontal = 1;
+		cub->rays[ray_id].hit_vertical = 0; // Ensure vertical hit is not set
 		cub->rays[ray_id].distance = sqrt(hor_distance);
+		cub->rays[ray_id].is_door = horizontal_ray.is_door; // Update door flag based on horizontal hit
 	}
 	else
 	{
 		cub->rays[ray_id].wall_hitx = vertical_ray.wall_hitx;
 		cub->rays[ray_id].wall_hity = vertical_ray.wall_hity;
 		cub->rays[ray_id].hit_vertical = 1;
+		cub->rays[ray_id].hit_horizontal = 0; // Ensure horizontal hit is not set
 		cub->rays[ray_id].distance = sqrt(ver_distance);
+		cub->rays[ray_id].is_door = vertical_ray.is_door; // Update door flag based on vertical hit
 	}
-	if (vertical_ray.is_door || horizontal_ray.is_door)
-		cub->rays[ray_id].is_door = 1;
-	else
-		cub->rays[ray_id].is_door = 0;
 }
+
 
 // check if a given pixel position is a door
 int	is_px_door(t_cub *cub, float xpixel, float ypixel)

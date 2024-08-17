@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/11 21:29:30 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/12 20:59:51 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,10 @@ typedef struct s_cub
 	mlx_image_t		*ea;
 	mlx_image_t		*door;
 	mlx_image_t		*pov_normal;
+    mlx_image_t **shooting_frames;
+    int current_frame;
+    int shooting_active;
+    double last_frame_time;
 	int				f[4];
 	int				c[4];
 }   t_cub;
@@ -206,6 +210,6 @@ void	draw_rays(t_cub *cub);
 
 // animation
 mlx_image_t	**ft_get_frames(t_cub *cub, char *path, int frames);
-void		ft_pov(t_cub *cub, t_actions action);
+void		ft_pov(void *arg);
 
 #endif

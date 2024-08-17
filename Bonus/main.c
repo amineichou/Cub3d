@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:53:10 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/11 21:28:47 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/12 17:09:41 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@
 // }
 
 
-void    ft_hook(void* param)
+void    ft_hook(void *param)
 {
     t_cub*  cub;
     
     cub = (t_cub*)param;
     if (mlx_is_key_down(cub->mlx, MLX_KEY_ESCAPE))
         mlx_close_window(cub->mlx);
-    if (mlx_is_key_down(cub->mlx, MLX_KEY_SPACE))
-        ft_pov(cub, SHOOT);
     update_player_position(cub);
     clear_image(cub->image);
 	cast_rays(cub);
@@ -99,13 +97,12 @@ void	ft_load_images(t_cub *cub, t_config *game_config)
 	    // load door and pov_normal images
     cub->door = ft_get_image(cub, "../textures/door.png");
     cub->pov_normal = ft_get_image(cub, "../textures/normal.png");
-	if (!mlx_resize_image(cub->pov_normal, WIDTH, HEIGHT))
-	{
-		ft_printerror("resize error\n");
-		exit(1);
-	}
+    if (!mlx_resize_image(cub->pov_normal, WIDTH, HEIGHT))
+    {
+        ft_printerror("resize error\n");
+        exit(1);
+    }
 }
-
 
 void	ft_init_cub(t_cub *cub, t_config *game_config)
 {
@@ -144,9 +141,10 @@ int main(int ac, char **av)
     t_cub   cub;
     ft_init_cub(&cub, game_config);
 	mlx_image_to_window(cub.mlx, cub.image, 0, 0);
+    mlx_image_to_window(cub.mlx, cub.pov_normal, 0, 0);
     mlx_loop_hook(cub.mlx, ft_hook, &cub);
+    mlx_loop_hook(cub.mlx, ft_pov, &cub);
     mlx_cursor_hook(cub.mlx, ft_mouse_move, &cub);
-    ft_pov(&cub, NORMAL);
     mlx_loop(cub.mlx);
     mlx_terminate(cub.mlx);
     g_malloc(0, FREE);

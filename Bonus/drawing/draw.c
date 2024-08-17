@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:50:30 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/11 14:20:26 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/17 15:39:56 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void    draw_3d(t_cub *cub)
         // draw_column_from_texture
         // Select the correct texture based on the ray hit direction
         mlx_image_t *texture;
-        if (cub->rays[i].is_door)
+        if (cub->rays[i].is_door) {
             texture = cub->door;
-        else {
+        } else {
             if (cub->rays[i].hit_vertical) {
                 if (cub->rays[i].ray_angle < M_PI / 2 || cub->rays[i].ray_angle > 3 * M_PI / 2) {
                     texture = cub->ea; // East texture
@@ -96,6 +96,7 @@ void    draw_3d(t_cub *cub)
             }
         }
 
+
         float wall_hit_x;
         if (cub->rays[i].hit_vertical)
             wall_hit_x = fmod(cub->rays[i].wall_hity, TILE_SIZE);
@@ -104,6 +105,7 @@ void    draw_3d(t_cub *cub)
 
 
         int tex_x = wall_hit_x * ((float)texture->width / TILE_SIZE);
+
 
         // Draw the wall strip
         float y = top_point.y;
