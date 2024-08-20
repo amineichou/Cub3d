@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/19 21:36:41 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/20 20:17:26 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <limits.h>
 #include <float.h> 
 #include "MLX42.h"
+
 
 # define BUFFER_SIZE 500
 # define WIDTH 1080

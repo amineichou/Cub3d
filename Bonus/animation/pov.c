@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:38:38 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/20 20:08:09 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/20 20:58:16 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,15 @@ void	ft_pov(void *arg)
 	cub = (t_cub *)arg;
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_SPACE) && cub->shooting_active == 0)
     {
-        mlx_delete_image(cub->mlx, cub->pov_normal);
-		ft_star_shooting(cub);
+		if (fork() == 0)
+		{
+			system("afplay ./animation/gun-shot.wav");
+			exit(0);
+		}
+		else {
+	        mlx_delete_image(cub->mlx, cub->pov_normal);
+			ft_star_shooting(cub);
+		}
     }
 	ft_update_shooting(cub);
 }
