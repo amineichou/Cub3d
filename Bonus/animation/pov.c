@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:38:38 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/20 20:58:16 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/20 21:06:22 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void ft_update_shooting(t_cub *cub)
 		mlx_delete_image(cub->mlx, cub->shooting_frames[cub->shooting_active]);
 		cub->shooting_duration = 0;
 		cub->shooting_active += 1;
-		if (cub->shooting_active >= 7)
+		if (cub->shooting_active >= 4)
 		{
 			mlx_delete_image(cub->mlx, cub->shooting_frames[cub->shooting_active]);
 			cub->pov_normal = ft_get_image(cub, "../animation/shooting/6.png");
