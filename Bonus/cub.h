@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/12 20:59:51 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/19 21:36:41 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,11 @@ typedef struct s_cub
 	mlx_image_t		*so;
 	mlx_image_t		*we;
 	mlx_image_t		*ea;
-	mlx_image_t		*door;
-	mlx_image_t		*pov_normal;
-    mlx_image_t **shooting_frames;
-    int current_frame;
-    int shooting_active;
-    double last_frame_time;
+    mlx_image_t		*door;
+    mlx_image_t		*pov_normal;
+    mlx_image_t		**shooting_frames;
+    int				shooting_active;
+    int				shooting_duration;
 	int				f[4];
 	int				c[4];
 }   t_cub;

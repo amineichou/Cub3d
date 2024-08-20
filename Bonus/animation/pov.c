@@ -6,14 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:38:38 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/12 21:31:40 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/20 19:37:53 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
-
-#define SHOOTING_ANIMATION_FRAMES 11
-#define FRAME_DURATION 100000000
 
 /*
 	load images Please fix the path to the images in ft_get_image
@@ -46,57 +43,47 @@ mlx_image_t	**ft_get_frames(t_cub *cub, char *path, int frames)
 
 void ft_update_shooting(t_cub *cub)
 {
-    // Ensure that shooting is active and frames are valid
-    if (!cub->shooting_active || cub->shooting_frames == NULL)
+	static int i;
+    if (cub->shooting_active == 0)
         return;
-
-    // Update frames based on the elapsed time
-    while (mlx_get_time() - cub->last_frame_time > FRAME_DURATION)
-    {
-        // Check if current_frame is within bounds
-        if (cub->current_frame < SHOOTING_ANIMATION_FRAMES)
-        {
-            // Display the current frame
-			if (!mlx_resize_image(cub->shooting_frames[cub->current_frame], WIDTH, HEIGHT))
-            mlx_image_to_window(cub->mlx, cub->shooting_frames[cub->current_frame], 0, 0);
-
-            // Delete the previous frame (if applicable)
-            if (cub->current_frame > 0)
-                mlx_delete_image(cub->mlx, cub->shooting_frames[cub->current_frame - 1]);
-
-            // Increment frame index
-            cub->current_frame++;
-        }
-
-        // Check if the animation has reached the last frame
-        if (cub->current_frame >= SHOOTING_ANIMATION_FRAMES)
-        {
-            cub->shooting_active = 0; // Deactivate shooting
-            cub->current_frame = 0;   // Reset the frame index
-            break;                    // Exit the loop
-        }
-
-        // Move to the next frame time
-        cub->last_frame_time += FRAME_DURATION;
-    }
-
-    // Update the time for the next frame
-    cub->last_frame_time = mlx_get_time();
+	
+	if (i)
+	{
+		mlx_resize_image(cub->shooting_frames[cub->shooting_active], WIDTH, HEIGHT);
+		mlx_image_to_window(cub->mlx, cub->shooting_frames[cub->shooting_active], 0, 0);
+		i = 0;
+	}
+	if (cub->shooting_duration > 5)
+	{
+		mlx_delete_image(cub->mlx, cub->shooting_frames[cub->shooting_active]);
+		cub->shooting_duration = 0;
+		cub->shooting_active += 1;
+		if (cub->shooting_active >= 7)
+		{
+			mlx_delete_image(cub->mlx, cub->shooting_frames[cub->shooting_active]);
+			cub->pov_normal = ft_get_image(cub, "../animation/shooting/6.png");
+			mlx_resize_image(cub->pov_normal, WIDTH, HEIGHT);
+			cub->shooting_active = 0;
+			mlx_image_to_window(cub->mlx, cub->pov_normal, 0, 0);
+			return ;
+		}
+		mlx_resize_image(cub->shooting_frames[cub->shooting_active], WIDTH, HEIGHT);
+		mlx_image_to_window(cub->mlx, cub->shooting_frames[cub->shooting_active], 0, 0);
+		i = 0;
+	}
+	cub->shooting_duration += 1;
 }
 
 void ft_star_shooting(t_cub *cub)
 {
-    cub->shooting_active = 1;
-    cub->current_frame = 0;
-    cub->last_frame_time = mlx_get_time();
-
-    // Ensure that shooting frames are properly allocated
-    cub->shooting_frames = ft_get_frames(cub, "../animation/shooting/", SHOOTING_ANIMATION_FRAMES);
-    if (cub->shooting_frames == NULL)
-    {
-        // Handle the error (e.g., log it, deactivate shooting, etc.)
-        cub->shooting_active = 0;
-    }
+	cub->shooting_frames = ft_get_frames(cub, "../animation/shooting/", 7);
+	if (cub->shooting_frames == NULL)
+	{
+		ft_printerror("shooting frames error\n");
+		cub->shooting_active = 0;
+	}
+	cub->shooting_duration = 0;
+	cub->shooting_active = 1;
 }
 
 void	ft_pov(void *arg)
@@ -104,7 +91,10 @@ void	ft_pov(void *arg)
 	t_cub		*cub;
 
 	cub = (t_cub *)arg;
-	if (mlx_is_key_down(cub->mlx, MLX_KEY_SPACE))
+	if (mlx_is_key_down(cub->mlx, MLX_KEY_SPACE) && cub->shooting_active == 0)
+    {
+        mlx_delete_image(cub->mlx, cub->pov_normal);
 		ft_star_shooting(cub);
+    }
 	ft_update_shooting(cub);
 }

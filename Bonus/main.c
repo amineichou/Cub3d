@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:53:10 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/12 17:09:41 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/19 21:43:58 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void	ft_init_cub(t_cub *cub, t_config *game_config)
         perror(mlx_strerror(mlx_errno));
         return ;
     }
+    cub->shooting_active = 0;
 }
 
 int main(int ac, char **av)
