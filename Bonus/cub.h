@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/20 20:17:26 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/21 18:42:56 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <math.h>
 # include <fcntl.h>
 # include <limits.h>
-#include <float.h> 
-#include "MLX42.h"
+# include <float.h> 
+# include "MLX42.h"
 
 
 # define BUFFER_SIZE 500
@@ -73,24 +73,25 @@ typedef struct s_ray
 
 typedef struct s_cub
 {
-    mlx_t*          mlx;
-    mlx_image_t*    image;
-    t_player        player;
-    t_ray           rays[WIDTH];
-    char            **map;
-	int*            color_buffer;
+	mlx_t*			mlx;
+	mlx_image_t*	image;
+	t_player		player;
+	t_ray			rays[WIDTH];
+	char			**map;
+	int*			color_buffer;
 	mlx_image_t		*no;
 	mlx_image_t		*so;
 	mlx_image_t		*we;
 	mlx_image_t		*ea;
-    mlx_image_t		*door;
-    mlx_image_t		*pov_normal;
-    mlx_image_t		**shooting_frames;
-    int				shooting_active;
-    int				shooting_duration;
+	mlx_image_t		*door;
+	mlx_image_t		*pov_normal;
+	mlx_image_t		**shooting_frames;
+	bool			shooting_active;
+	int				shooting_duration;
+	int				shooting_frames_count;
 	int				f[4];
 	int				c[4];
-}   t_cub;
+}	t_cub;
 
 typedef struct s_data_rays
 {
