@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_raycasting.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:30:44 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/11 14:45:22 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/31 18:09:29 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
+
+/*
+Updates the horizontal ray structure after detecting a collision.
+*/
+void	update_horizontal_ray(t_cub *cub, t_ray *horizontal_ray, int ray_id)
+{
+	int	newx;
+	int	newy;
+
+	newx = floor(horizontal_ray->wall_hitx / TILE_SIZE);
+	newy = floor((horizontal_ray->wall_hity - cub->rays[ray_id].up)
+			/ TILE_SIZE);
+	if (newx < 0 || newx >= MAPX || newy < 0 || newy >= MAPY)
+		return ;
+	horizontal_ray->is_door = 0;
+	horizontal_ray->hit_horizontal = 1;
+	horizontal_ray->hit_vertical = 0;
+	if (cub->map[newy][newx] == 'D')
+		horizontal_ray->is_door = 1;
+}
 
 /*
 Initialize horizontal raycasting data
@@ -62,10 +82,7 @@ t_ray	check_horizontal_collisions(t_cub *cub, int ray_id, t_data_rays data)
 		{
 			horizontal_ray.wall_hitx = next_horz_hitx;
 			horizontal_ray.wall_hity = next_horz_hity;
-			horizontal_ray.hit_horizontal = 1;
-			horizontal_ray.hit_vertical = 0;
-			if (is_px_door(cub, next_horz_hitx, next_horz_hity - cub->rays[ray_id].up))
-				horizontal_ray.is_door = 1;
+			update_horizontal_ray(cub, &horizontal_ray, ray_id);
 			break ;
 		}
 		else
