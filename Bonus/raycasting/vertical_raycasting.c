@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   vertical_raycasting.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:14:04 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/11 21:04:33 by moichou          ###   ########.fr       */
+/*   Updated: 2024/08/31 18:10:02 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
+
+/*
+Updates the vertical ray structure after detecting a collision.
+*/
+void	update_vertical_ray(t_cub *cub, t_ray *vertical_ray, int ray_id)
+{
+	int	newx;
+	int	newy;
+
+	newx = floor((vertical_ray->wall_hitx - cub->rays[ray_id].left)
+			/ TILE_SIZE);
+	newy = floor(vertical_ray->wall_hity / TILE_SIZE);
+	if (newx < 0 || newx >= MAPX || newy < 0 || newy >= MAPY)
+		return ;
+	vertical_ray->is_door = 0;
+	vertical_ray->hit_horizontal = 0;
+	vertical_ray->hit_vertical = 1;
+	if (cub->map[newy][newx] == 'D')
+		vertical_ray->is_door = 1;
+}
+
 /*
 Initialize vertical raycasting data
 */
@@ -61,10 +82,7 @@ t_ray	check_vertical_collisions(t_cub *cub, int ray_id, t_data_rays data)
 		{
 			vertical_ray.wall_hitx = next_ver_hitx;
 			vertical_ray.wall_hity = next_ver_hity;
-			vertical_ray.hit_vertical = 1;
-			vertical_ray.hit_horizontal = 0;
-			if (is_px_door(cub, next_ver_hitx - cub->rays[ray_id].left, next_ver_hity))
-				vertical_ray.is_door = 1;
+			update_vertical_ray(cub, &vertical_ray, ray_id);
 			break ;
 		}
 		else
