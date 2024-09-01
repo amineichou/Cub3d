@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/21 18:42:56 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/01 12:05:49 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,11 @@ typedef struct s_cub
 	mlx_image_t		*door;
 	mlx_image_t		*pov_normal;
 	mlx_image_t		**shooting_frames;
+	mlx_image_t		*texture;
 	bool			shooting_active;
 	int				shooting_duration;
 	int				shooting_frames_count;
+	float			wall_strip_height;
 	int				f[4];
 	int				c[4];
 }	t_cub;
@@ -151,7 +153,7 @@ typedef enum s_actions
 # define PARSE_ERR "no valid arguments\n"
 
 // main
-void	ft_load_images(t_cub *cub, t_config *game_config);
+void		ft_load_images(t_cub *cub, t_config *game_config);
 
 // garbage collector
 void		*g_malloc(size_t size, t_g_malloc mode);
@@ -175,7 +177,8 @@ char		**ft_divide_str(char *str);
 int			is_valid_map_char(char c);
 int			is_player(char c);
 bool		is_door(char c);
-char	    *ft_itoa(int n);
+char		*ft_itoa(int n);
+int			ft_get_player_postion(t_player *player, char **map, int x, int y);
 
 // read_all_file
 char		*get_next_line(int fd);
@@ -187,26 +190,26 @@ t_config	*make_config(char *filename);
 char		**make_map(char *map_str, int s_row, int s_clm);
 
 // raycasting
-t_ray   check_horizontal(t_cub *cub, int ray_id);
-t_ray   check_vertical(t_cub *cub, int ray_id);
-float	ft_periodic(float angle);
-void    cast_rays(t_cub *cub);
-int     is_wall(t_cub *cub, float xpixel, float ypixel);
-int	    is_px_door(t_cub *cub, float xpixel, float ypixel);
+t_ray		check_horizontal(t_cub *cub, int ray_id);
+t_ray		check_vertical(t_cub *cub, int ray_id);
+float		ft_periodic(float angle);
+void		cast_rays(t_cub *cub);
+int			is_wall(t_cub *cub, float xpixel, float ypixel);
+int			is_px_door(t_cub *cub, float xpixel, float ypixel);
 
 // player
-void    update_player_position(t_cub* cub);
-void	ft_init_player(t_player* player);
+void		update_player_position(t_cub* cub);
+void		ft_init_player(t_player* player);
 
 // drawing
-int		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
-void	plot(int x, int y, t_cub *cub, int color);
-void	draw_line(t_point start_point, t_point end_point, t_cub *cub, int color);
-void	clear_image(mlx_image_t* image);
-void    draw_3d(t_cub *cub);
-void    ft_minimap(t_cub *cub);
+int			ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+void		plot(int x, int y, t_cub *cub, int color);
+void		draw_line(t_point start_point, t_point end_point, t_cub *cub, int color);
+void		clear_image(mlx_image_t* image);
+void		draw_3d(t_cub *cub);
+void    	ft_minimap(t_cub *cub);
 mlx_image_t	*ft_get_image(t_cub *cub, char *pathname);
-void	draw_rays(t_cub *cub);
+void		draw_rays(t_cub *cub);
 
 
 // animation

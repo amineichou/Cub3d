@@ -6,25 +6,20 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:53:10 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/21 18:48:46 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/01 12:07:31 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-// void	leaks(void)
-// {
-// 	system("leaks cub3d");
-// }
 void	ft_hook(void *param)
 {
 	t_cub	*cub;
 
-	cub = (t_cub*)param;
+	cub = (t_cub *)param;
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_ESCAPE))
-	    mlx_close_window(cub->mlx);
+		mlx_close_window(cub->mlx);
 	update_player_position(cub);
-	clear_image(cub->image);
 	cast_rays(cub);
 	draw_3d(cub);
 	ft_minimap(cub);
@@ -49,36 +44,6 @@ void	ft_mouse_move(double xpos, double ypos, void *param)
 		cub->player.angle = ft_periodic(cub->player.angle
 				+ cub->player.turn_speed);
 	}
-}
-
-int	ft_get_player_postion(t_player *player, char **map)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (map[y++])
-	{
-		x = 0;
-		while (map[y++][x++])
-		{
-			if (is_player(map[y][x]))
-			{
-				player->xposition = x;
-				player->yposition = y;
-				if (map[y][x] == 'S')
-					player->angle = 3 * M_PI / 2;
-				else if (map[y][x] == 'N')
-					player->angle = M_PI / 2;
-				else if (map[y][x] == 'W')
-					player->angle = M_PI;
-				else if (map[y][x] == 'E')
-					player->angle = 0;
-				return (1);
-			}
-		}
-	}
-	return (ft_printerror("There's no player in the map!\n"), 0);
 }
 
 void	ft_load_images(t_cub *cub, t_config *game_config)
@@ -106,7 +71,7 @@ void	ft_init_cub(t_cub *cub, t_config *game_config)
 	cub->map = game_config->map;
 	cub->f[3] = 255;
 	cub->c[3] = 255;
-	if (!ft_get_player_postion(&cub->player, cub->map))
+	if (!ft_get_player_postion(&cub->player, cub->map, 0, 0))
 		return ;
 	ft_load_images(cub, game_config);
 	ft_init_player(&(cub->player));

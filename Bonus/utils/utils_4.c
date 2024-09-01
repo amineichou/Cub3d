@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 14:53:09 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/12 21:26:25 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/01 12:05:23 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,31 @@ char	*ft_itoa(int n)
 		n /= 10;
 	}
 	return (str);
+}
+
+int	ft_get_player_postion(t_player *player, char **map, int x, int y)
+{
+	y = 0;
+	while (map[y++])
+	{
+		x = 0;
+		while (map[y++][x++])
+		{
+			if (is_player(map[y][x]))
+			{
+				player->xposition = x;
+				player->yposition = y;
+				if (map[y][x] == 'S')
+					player->angle = 3 * M_PI / 2;
+				else if (map[y][x] == 'N')
+					player->angle = M_PI / 2;
+				else if (map[y][x] == 'W')
+					player->angle = M_PI;
+				else if (map[y][x] == 'E')
+					player->angle = 0;
+				return (1);
+			}
+		}
+	}
+	return (ft_printerror("There's no player in the map!\n"), 0);
 }
