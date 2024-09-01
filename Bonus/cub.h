@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/01 12:05:49 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/01 13:49:44 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 # define FOV 60 * (M_PI / 180)
 # define NUM_RAYS WIDTH
 # define MINIMAP_SCALE_FACTOR 0.4
-#define MINIMAP_PAD 13
-#define MINIMAP_RADIUS 4 * TILE_SIZE * MINIMAP_SCALE_FACTOR
+# define MINIMAP_PAD 13
+# define MINIMAP_RADIUS 4 * TILE_SIZE * MINIMAP_SCALE_FACTOR
 
 int MAPX;
 int	MAPY;
@@ -89,7 +89,7 @@ typedef struct s_cub
 	mlx_image_t		*texture;
 	bool			shooting_active;
 	int				shooting_duration;
-	int				shooting_frames_count;
+	int				sfc;
 	float			wall_strip_height;
 	int				f[4];
 	int				c[4];
@@ -179,6 +179,9 @@ int			is_player(char c);
 bool		is_door(char c);
 char		*ft_itoa(int n);
 int			ft_get_player_postion(t_player *player, char **map, int x, int y);
+int			is_valid_door(char **map);
+bool		is_usless_door(char **map, int x, int y);
+int			non_valid_chars(char **map);
 
 // read_all_file
 char		*get_next_line(int fd);

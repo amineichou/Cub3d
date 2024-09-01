@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 17:54:27 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/31 23:11:36 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/01 13:33:22 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	draw_player(t_cub *cub)
 			{
 				mlx_put_pixel(cub->image, (MINIMAP_RADIUS + x + MINIMAP_PAD),
 					(MINIMAP_RADIUS + y + MINIMAP_PAD),
-					ft_pixel(0, 120, 0, 255)); 
+					ft_pixel(0, 120, 0, 255));
 			}
 			y++;
 		}

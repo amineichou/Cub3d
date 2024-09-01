@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:32:15 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/05 22:46:56 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/01 20:24:14 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	set_arg(t_config *config, char *line, int args_count)
 		&& args_count == 4)
 		config->ea = args[1];
 	else if (args && args[0] && args[1] && ft_strcmp(args[0], "F") == 0
-		&& args_count == 5) // TODO : protection
+		&& args_count == 5)
 		config->f = ft_split(args[1], ',');
 	else if (args && args[0] && args[1] && ft_strcmp(args[0], "C") == 0
 		&& args_count == 6)
@@ -72,7 +72,7 @@ static int	set_arg(t_config *config, char *line, int args_count)
 }
 
 static t_config	*get_args(t_config *config, int fd)
-{
+{ 
 	char	*line;
 	int		args_count;
 

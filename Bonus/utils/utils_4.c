@@ -6,12 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 14:53:09 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/01 12:05:23 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/01 20:32:24 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
-
 
 int	ft_atoi(const char *str)
 {
@@ -70,10 +69,15 @@ char	*ft_itoa(int n)
 	int		len;
 	int		nb;
 
-	len = 1;
+	if (n == 0)
+		return (ft_strdup("0"));
+	len = 0;
 	nb = n;
-	while (nb /= 10)
+	while (nb)
+	{
+		nb /= 10;
 		len++;
+	}
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);

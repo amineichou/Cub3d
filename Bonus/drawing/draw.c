@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:50:30 by skarim            #+#    #+#             */
-/*   Updated: 2024/09/01 11:46:23 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/01 20:35:03 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ void	draw_ceiling_floor(t_cub *cub, t_point top_point,
 	ceil = -1;
 	while (++ceil < top_point.y)
 		mlx_put_pixel(cub->image, i, ceil,
-			ft_pixel(255, 255, 255, 255));
+			ft_pixel(54, 69, 79, 255));
 	floor = bottom_point.y - 1;
 	while (++floor < HEIGHT)
-		mlx_put_pixel(cub->image, i, floor, ft_pixel(16, 16, 33, 255));
+		mlx_put_pixel(cub->image, i, floor,
+			ft_pixel(54, 69, 79, 255));
 }
 
 void	draw_walls(t_cub *cub, t_point top_point, t_point bottom_point, int i)

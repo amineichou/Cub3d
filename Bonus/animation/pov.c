@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:38:38 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/21 18:34:42 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/01 13:32:04 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 */
 mlx_image_t	**ft_get_frames(t_cub *cub, char *path, int frames)
 {
-	mlx_image_t **images;
-	mlx_image_t *image;
+	mlx_image_t	**images;
+	mlx_image_t	*image;
 	char		*pathname;
 	int			i;
 
@@ -40,10 +40,10 @@ mlx_image_t	**ft_get_frames(t_cub *cub, char *path, int frames)
 	return (images);
 }
 
-void ft_end_shooting(t_cub *cub)
+void	ft_end_shooting(t_cub *cub)
 {
 	cub->shooting_active = false;
-	cub->shooting_frames_count = 0;
+	cub->sfc = 0;
 	cub->pov_normal = ft_get_image(cub, "../textures/normal.png");
 	if (!mlx_resize_image(cub->pov_normal, WIDTH, HEIGHT))
 	{
@@ -53,45 +53,51 @@ void ft_end_shooting(t_cub *cub)
 	mlx_image_to_window(cub->mlx, cub->pov_normal, 0, 0);
 }
 
-void ft_update_shooting(t_cub *cub)
+/*
+	Display the shooting animation
+	sfc = shooting frames count
+*/
+void	ft_update_shooting(t_cub *cub)
 {
 	static int	first;
 
 	if (!cub->shooting_active)
-		return;
+		return ;
 	if (first == 0)
 	{
-		mlx_image_to_window(cub->mlx, cub->shooting_frames[cub->shooting_frames_count], 0, 0);
+		mlx_image_to_window(cub->mlx, cub->shooting_frames[cub->sfc], 0, 0);
 		first = 1;
 	}
 	if (cub->shooting_duration >= 5)
 	{
-		mlx_delete_image(cub->mlx, cub->shooting_frames[cub->shooting_frames_count]);
-		cub->shooting_frames_count++;
-		if (cub->shooting_frames[cub->shooting_frames_count] == NULL)
+		mlx_delete_image(cub->mlx, cub->shooting_frames[cub->sfc]);
+		cub->sfc++;
+		if (cub->shooting_frames[cub->sfc] == NULL)
 		{
 			first = 0;
 			ft_end_shooting(cub);
 			return ;
 		}
-		mlx_image_to_window(cub->mlx, cub->shooting_frames[cub->shooting_frames_count], 0, 0);
+		mlx_image_to_window(cub->mlx,
+			cub->shooting_frames[cub->sfc], 0, 0);
 		cub->shooting_duration = 0;
 	}
 	else
 		cub->shooting_duration++;
 }
 
-void ft_star_shooting(t_cub *cub)
+void	ft_star_shooting(t_cub *cub)
 {
 	cub->shooting_frames = ft_get_frames(cub, "../animation/shooting/", 7);
 	if (cub->shooting_frames == NULL)
 	{
 		ft_printerror("shooting frames error\n");
-		cub->shooting_active = 0;
+		cub->shooting_active = false;
+		return ;
 	}
 	cub->shooting_duration = 0;
 	cub->shooting_active = true;
-	cub->shooting_frames_count = 0;
+	cub->sfc = 0;
 }
 
 void	ft_pov(void *arg)
@@ -106,8 +112,9 @@ void	ft_pov(void *arg)
 			system("afplay ./animation/gun-shot.wav");
 			exit(0);
 		}
-		else {
-	        mlx_delete_image(cub->mlx, cub->pov_normal);
+		else
+		{
+			mlx_delete_image(cub->mlx, cub->pov_normal);
 			ft_star_shooting(cub);
 		}
 	}
