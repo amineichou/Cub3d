@@ -6,7 +6,7 @@
 /*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:30:44 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/31 18:09:29 by skarim           ###   ########.fr       */
+/*   Updated: 2024/09/02 16:02:55 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	update_horizontal_ray(t_cub *cub, t_ray *horizontal_ray, int ray_id)
 	newx = floor(horizontal_ray->wall_hitx / TILE_SIZE);
 	newy = floor((horizontal_ray->wall_hity - cub->rays[ray_id].up)
 			/ TILE_SIZE);
-	if (newx < 0 || newx >= MAPX || newy < 0 || newy >= MAPY)
+	if (newx < 0 || newx >= cub->mapx || newy < 0 || newy >= cub->mapy)
 		return ;
 	horizontal_ray->is_door = 0;
 	horizontal_ray->hit_horizontal = 1;
@@ -75,8 +75,8 @@ t_ray	check_horizontal_collisions(t_cub *cub, int ray_id, t_data_rays data)
 	horizontal_ray = (t_ray){0};
 	next_horz_hitx = data.xintercept;
 	next_horz_hity = data.yintercept;
-	while (next_horz_hitx >= 0 && next_horz_hitx <= MAPX * TILE_SIZE
-		&& next_horz_hity >= 0 && next_horz_hity <= MAPY * TILE_SIZE)
+	while (next_horz_hitx >= 0 && next_horz_hitx <= cub->mapx * TILE_SIZE
+		&& next_horz_hity >= 0 && next_horz_hity <= cub->mapy * TILE_SIZE)
 	{
 		if (is_wall(cub, next_horz_hitx, next_horz_hity - cub->rays[ray_id].up))
 		{

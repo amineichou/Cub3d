@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_config.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:32:15 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/01 20:24:14 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:57:23 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-static char	**get_map(int fd, char *line)
+static char	**get_map(int fd, char *line, t_config **config)
 {
 	char	*map_str;
 	char	**map;
@@ -37,8 +37,8 @@ static char	**get_map(int fd, char *line)
 		line = get_next_line(fd);
 		i++;
 	}
-	MAPY = map_colmun;
-	MAPX = map_row;
+	(*config)->mapx = map_row;
+	(*config)->mapy = map_colmun;
 	map = make_map(map_str, map_row, map_colmun);
 	return (map);
 }
@@ -93,7 +93,7 @@ static t_config	*get_args(t_config *config, int fd)
 		if (args_count == 7)
 			break ;
 	}
-	config->map = get_map(fd, line);
+	config->map = get_map(fd, line, &config);
 	if (!config->map)
 		return (NULL);
 	return (config);
