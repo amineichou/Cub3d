@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 21:37:05 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/07 12:00:47 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/02 18:08:23 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,9 @@ char	**ft_divide_str(char *str)
 	res[0] = ft_strldup(str, i);
 	res[1] = ft_strdup(&str[i]);
 	res[2] = NULL;
-	return (res);
-}
+	res[1] = ft_trim_spaces(res[1]);
 
-/*
-    remove the spaces and tabs from the start
-    and the end of a string
-*/
-char	*ft_trim_spaces(char *str)
-{
-	char	*res;
-	int		i;
-	int		j;
-
-	i = 0;
-	if (!str)
-		return (NULL);
-	j = ft_strlen(str) - 1;
-	while (str[i] && ft_isspace(str[i]))
-		i++;
-	if (i == ft_strlen(str))
-		return (NULL);
-	while (ft_isspace(str[j]))
-		j--;
-	j = ft_strlen(str) - j - 1;
-	res = ft_strldup(str + i, (ft_strlen(str) - i - j));
-	if (!res)
-		return (ft_printerror(MALLOC_ERR), NULL);
+	// printf("res[1] = %s\n", res[1]);
 	return (res);
 }
 

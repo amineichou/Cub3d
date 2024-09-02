@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:53:10 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/01 12:07:31 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/02 18:13:53 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,31 @@ void	ft_load_images(t_cub *cub, t_config *game_config)
 	cub->so = ft_get_image(cub, game_config->so);
 	cub->we = ft_get_image(cub, game_config->we);
 	cub->ea = ft_get_image(cub, game_config->ea);
-	cub->door = ft_get_image(cub, "../textures/door.png");
-	cub->pov_normal = ft_get_image(cub, "../textures/normal.png");
+	cub->door = ft_get_image(cub, "./textures/door.png");
+	cub->pov_normal = ft_get_image(cub, "./textures/normal.png");
 	if (!mlx_resize_image(cub->pov_normal, WIDTH, HEIGHT))
 	{
 		ft_printerror("resize error\n");
 		exit(1);
 	}
+}
+
+void	init_floor_ceil_color(t_cub *cub, t_config *game_config)
+{
+	cub->f[0] = ft_atoi_color(game_config->f[0]);
+	cub->f[1] = ft_atoi_color(game_config->f[1]);
+	cub->f[2] = ft_atoi_color(game_config->f[2]);
+	if (game_config->f[3] == NULL)
+		cub->f[3] = 255;
+	else
+		cub->f[3] = ft_atoi_color(game_config->f[3]);
+	cub->c[0] = ft_atoi_color(game_config->c[0]);
+	cub->c[1] = ft_atoi_color(game_config->c[1]);
+	cub->c[2] = ft_atoi_color(game_config->c[2]);
+	if (game_config->c[3] == NULL)
+		cub->c[3] = 255;
+	else
+		cub->c[3] = ft_atoi_color(game_config->c[3]);
 }
 
 void	ft_init_cub(t_cub *cub, t_config *game_config)
@@ -69,8 +87,7 @@ void	ft_init_cub(t_cub *cub, t_config *game_config)
 		return ;
 	}
 	cub->map = game_config->map;
-	cub->f[3] = 255;
-	cub->c[3] = 255;
+	init_floor_ceil_color(cub, game_config);
 	if (!ft_get_player_postion(&cub->player, cub->map, 0, 0))
 		return ;
 	ft_load_images(cub, game_config);

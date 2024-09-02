@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:44:12 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/15 16:45:34 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/02 18:03:44 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ int	ft_strsearch(char *str, char c)
 	return (0);
 }
 
+/*
+	Duplicate a string with a limited length
+*/
 char	*ft_strldup(char *s1, int lenght)
 {
 	int		i;

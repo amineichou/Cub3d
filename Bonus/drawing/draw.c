@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:50:30 by skarim            #+#    #+#             */
-/*   Updated: 2024/09/01 20:35:03 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/02 16:48:31 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,28 @@ int	mlx_get_pixel(mlx_image_t *image, const uint32_t x, const uint32_t y)
 void	draw_ceiling_floor(t_cub *cub, t_point top_point,
 					t_point bottom_point, int i)
 {
-	int	y;
-	int	ceil;
-	int	floor;
+	float	floor;
+	float	ceil;
 
 	ceil = -1;
 	while (++ceil < top_point.y)
 		mlx_put_pixel(cub->image, i, ceil,
-			ft_pixel(54, 69, 79, 255));
+			ft_pixel(cub->c[0], cub->c[1], cub->c[2], cub->c[3]));
 	floor = bottom_point.y - 1;
 	while (++floor < HEIGHT)
 		mlx_put_pixel(cub->image, i, floor,
-			ft_pixel(54, 69, 79, 255));
+			ft_pixel(cub->f[0], cub->f[1], cub->f[2], cub->f[3]));
+
+
+	// printf("cub->c[0] = %d\n", cub->c[0]);
+	// printf("cub->c[1] = %d\n", cub->c[1]);
+	// printf("cub->c[2] = %d\n", cub->c[2]);
+	// printf("cub->c[3] = %d\n", cub->c[3]);
+
+	// printf("cub->f[0] = %d\n", cub->f[0]);
+	// printf("cub->f[1] = %d\n", cub->f[1]);
+	// printf("cub->f[2] = %d\n", cub->f[2]);
+	// printf("cub->f[3] = %d\n", cub->f[3]);
 }
 
 void	draw_walls(t_cub *cub, t_point top_point, t_point bottom_point, int i)

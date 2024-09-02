@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/01 13:49:44 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/02 17:00:04 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ int			ft_get_player_postion(t_player *player, char **map, int x, int y);
 int			is_valid_door(char **map);
 bool		is_usless_door(char **map, int x, int y);
 int			non_valid_chars(char **map);
+int			ft_atoi_color(const char *str);
 
 // read_all_file
 char		*get_next_line(int fd);
