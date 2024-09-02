@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:53:10 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/02 20:49:40 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/02 22:14:14 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,7 @@ void	init_floor_ceil_color(t_cub *cub, t_config *game_config)
 
 void	ft_init_cub(t_cub *cub, t_config *game_config)
 {
-	if (!(cub->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", false)))
-	{
-		perror(mlx_strerror(mlx_errno));
-		return ;
-	}
+	ft_mlx_init(cub);
 	cub->map = game_config->map;
 	init_floor_ceil_color(cub, game_config);
 	cub->mapx = game_config->mapx;
@@ -94,12 +90,6 @@ void	ft_init_cub(t_cub *cub, t_config *game_config)
 		return ;
 	ft_load_images(cub, game_config);
 	ft_init_player(&(cub->player));
-	if (!(cub->image = mlx_new_image(cub->mlx, WIDTH, HEIGHT)))
-	{
-		mlx_close_window(cub->mlx);
-		perror(mlx_strerror(mlx_errno));
-		return ;
-	}
 	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) == -1)
 	{
 		mlx_close_window(cub->mlx);
@@ -109,14 +99,14 @@ void	ft_init_cub(t_cub *cub, t_config *game_config)
 	cub->shooting_active = 0;
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_config	*game_config;
 	t_cub		cub;
 
 	game_config = parser(ac, av);
 	if (!game_config)
-	    return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	ft_init_cub(&cub, game_config);
 	mlx_image_to_window(cub.mlx, cub.image, 0, 0);
 	mlx_image_to_window(cub.mlx, cub.pov_normal, 0, 0);

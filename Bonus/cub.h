@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/02 20:49:32 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/02 22:04:41 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,7 @@ int			is_valid_door(char **map);
 bool		is_usless_door(char **map, int x, int y);
 int			non_valid_chars(char **map);
 int			ft_atoi_color(const char *str);
+int			ft_mlx_init(t_cub *cub);
 
 // read_all_file
 char		*get_next_line(int fd);
@@ -201,7 +202,6 @@ t_ray		check_vertical(t_cub *cub, int ray_id);
 float		ft_periodic(float angle);
 void		cast_rays(t_cub *cub);
 int			is_wall(t_cub *cub, float xpixel, float ypixel);
-int			is_px_door(t_cub *cub, float xpixel, float ypixel);
 
 // player
 void		update_player_position(t_cub* cub);
