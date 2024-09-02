@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/02 17:00:04 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/02 20:49:32 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@
 # define MINIMAP_PAD 13
 # define MINIMAP_RADIUS 4 * TILE_SIZE * MINIMAP_SCALE_FACTOR
 
-int MAPX;
-int	MAPY;
 
 typedef struct s_point
 {
@@ -78,6 +76,8 @@ typedef struct s_cub
 	t_player		player;
 	t_ray			rays[WIDTH];
 	char			**map;
+	int				mapx;
+	int				mapy;
 	int*			color_buffer;
 	mlx_image_t		*no;
 	mlx_image_t		*so;
@@ -112,6 +112,8 @@ typedef struct s_config
 	char	**f;
 	char	**c;
 	char	**map;
+	int		mapx;
+	int		mapy;
 }	t_config;
 
 typedef struct s_garbage

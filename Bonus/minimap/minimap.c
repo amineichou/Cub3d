@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 17:54:27 by skarim            #+#    #+#             */
-/*   Updated: 2024/09/01 13:33:22 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:58:55 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	draw_minimap_pixel(t_cub *cub, int x, int y)
 	yposition = floor((cub->player.ypixel
 				+ y / MINIMAP_SCALE_FACTOR) / TILE_SIZE);
 	color = ft_pixel(0, 0, 0, 255);
-	if (xposition < MAPX && xposition >= 0
-		&& yposition < MAPY && yposition >= 0)
+	if (xposition < cub->mapx && xposition >= 0
+		&& yposition < cub->mapy && yposition >= 0)
 	{
 		if (cub->map[yposition][xposition] == '1')
 			color = ft_pixel(255, 255, 255, 255);
