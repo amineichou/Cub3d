@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
+/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:53:10 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/07 10:20:41 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:31:49 by skarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void	ft_init_cub(t_cub *cub, t_config *game_config)
 	cub->map = game_config->map;
 	cub->f[3] = 255;
 	cub->c[3] = 255;
+    cub->mapx = game_config->mapx;
+    cub->mapy = game_config->mapy;
     if (!ft_get_player_postion(&cub->player, cub->map))
         return ;
 	ft_load_images(cub, game_config);
