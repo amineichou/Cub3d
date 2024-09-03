@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/02 15:47:29 by skarim           ###   ########.fr       */
+/*   Updated: 2024/09/03 14:55:17 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,78 +20,80 @@
 # include <math.h>
 # include <fcntl.h>
 # include <limits.h>
-#include "MLX42.h"
+# include "MLX42.h"
 
 # define BUFFER_SIZE 500
 # define WIDTH 1080
 # define HEIGHT 720
 # define TILE_SIZE 40
-# define FOV 60 * (M_PI / 180)
+// FOV = 60 * (M_PI / 180) = 1.0471975511965976
+# define FOV 1.0471975511965976
 # define NUM_RAYS WIDTH
 # define MINIMAP_SCALE_FACTOR 0.2
 
 typedef struct s_point
 {
-    int x;
-    int y;
-}   t_point;
+	int	x;
+	int	y;
+}	t_point;
 
 typedef struct s_player
 {
-    float xposition;
-    float yposition;
-    float xpixel;
-    float ypixel;
-    float radius;
-    float walk_speed;
-    float turn_speed;
-    float angle;
-}   t_player;
+	float	xposition;
+	float	yposition;
+	float	xpixel;
+	float	ypixel;
+	float	radius;
+	float	walk_speed;
+	float	turn_speed;
+	float	angle;
+}	t_player;
 
 typedef struct s_ray
 {
-    float   ray_angle;
-    float   wall_hitx;
-    float   wall_hity;
-    float   distance;
-    int     hit_vertical;
+	float	ray_angle;
+	float	wall_hitx;
+	float	wall_hity;
+	float	distance;
+	int		hit_vertical;
 	int		hit_horizontal;
-    int     up;
-    int     down;
-    int     left;
-    int     right;
-}   t_ray;
+	int		up;
+	int		down;
+	int		left;
+	int		right;
+}	t_ray;
 
 typedef struct s_cub
 {
-    mlx_t*          mlx;
-    mlx_image_t*    image;
-    t_player        player;
-    t_ray           rays[WIDTH];
-    char            **map;
-    int             mapx;
-    int             mapy;
-    int*            color_buffer;
+	mlx_t			*mlx;
+	mlx_image_t		*image;
+	t_player		player;
+	t_ray			rays[WIDTH];
+	char			**map;
+	int				mapx;
+	int				mapy;
 	mlx_image_t		*no;
 	mlx_image_t		*so;
 	mlx_image_t		*we;
 	mlx_image_t		*ea;
-    int             f[4];
-    int             c[4];
-}   t_cub;
-
+	mlx_image_t		*texture;
+	int				sfc;
+	float			wall_strip_height;
+	int				f[4];
+	int				c[4];
+}	t_cub;
 typedef struct s_data_rays
 {
-    float xintercept;
-    float yintercept;
-    float xstep;
-    float ystep;
-}   t_data_rays;
+	float	xintercept;
+	float	yintercept;
+	float	xstep;
+	float	ystep;
+}	t_data_rays;
 
 typedef struct s_config
 {
-    int     mapx;
-    int     mapy;
+	int		mapx;
+	int		mapy;
 	char	*no;
 	char	*so;
 	char	*we;
@@ -127,7 +129,6 @@ typedef struct s_offset
 	int	y_off;
 }	t_offset;
 
-
 // define errors
 # define OPEN_ERR "can't open the configuration file\n"
 # define EXT_ERR "invalid file, make sure the filename format is (file.cub)\n"
@@ -159,6 +160,9 @@ char		**ft_divide_str(char *str);
 int			is_valid_map_char(char c);
 int			is_player(char c);
 int			ft_atoi(const char *str);
+int			ft_mlx_init(t_cub *cub);
+int			ft_atoi_color(const char *str);
+int			ft_get_player_postion(t_player *player, char **map, int x, int y);
 
 // read_all_file
 char		*get_next_line(int fd);
@@ -170,24 +174,24 @@ t_config	*make_config(char *filename);
 char		**make_map(char *map_str, int s_row, int s_clm);
 
 // get_config file
-mlx_image_t		*ft_get_image(t_cub *cub, char *pathname);
+mlx_image_t	*ft_get_image(t_cub *cub, char *pathname);
 
 // raycasting
-t_ray   check_horizontal(t_cub *cub, int ray_id);
-t_ray   check_vertical(t_cub *cub, int ray_id);
-float	ft_periodic(float angle);
-void    cast_rays(t_cub *cub);
-int     is_wall(t_cub *cub, float xpixel, float ypixel);
+t_ray		check_horizontal(t_cub *cub, int ray_id);
+t_ray		check_vertical(t_cub *cub, int ray_id);
+float		ft_periodic(float angle);
+void		cast_rays(t_cub *cub);
+int			is_wall(t_cub *cub, float xpixel, float ypixel);
 
 // player
-void    update_player_position(t_cub* cub);
-void	ft_init_player(t_player* player);
+void		update_player_position(t_cub *cub);
+void		ft_init_player(t_player *player);
 
 // drawing
-int		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
-void	draw_line(t_point start_point, t_point end_point, t_cub *cub, int color);
-void	clear_image(mlx_image_t* image);
-void    draw_3d(t_cub *cub);
-void	ft_load_images(t_cub *cub, t_config *game_config);
+int			ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+void		draw_line(t_point start_point, t_point end_point,
+				t_cub *cub, int color);
+void		draw_3d(t_cub *cub);
+void		ft_load_images(t_cub *cub, t_config *game_config);
 
 #endif

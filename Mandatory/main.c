@@ -6,68 +6,23 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:53:10 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/02 20:48:37 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/03 14:58:37 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-// void	leaks(void)
-// {
-// 	system("leaks cub3d");
-// }
-
-
-void    ft_hook(void* param)
+void	ft_hook(void *param)
 {
-    t_cub*  cub;
-    
-    cub = param;
-    if (mlx_is_key_down(cub->mlx, MLX_KEY_ESCAPE))
-        mlx_close_window(cub->mlx);
-    update_player_position(cub);
-    clear_image(cub->image);
+	t_cub	*cub;
+
+	cub = param;
+	if (mlx_is_key_down(cub->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(cub->mlx);
+	update_player_position(cub);
 	cast_rays(cub);
-    draw_3d(cub);
-    
-    // uint32_t *textures = malloc(sizeof(uint32_t) )
+	draw_3d(cub);
 }
-
-
-int ft_get_player_postion(t_player *player, char **map)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (is_player(map[y][x]))
-			{
-				player->xposition = x;
-				player->yposition = y;
-                if (map[y][x] == 'S')
-                    player->angle = 3 * M_PI / 2;
-                else if (map[y][x] == 'N')
-                    player->angle = M_PI / 2;
-                else if (map[y][x] == 'W')
-                    player->angle = M_PI;
-                else if (map[y][x] == 'E')
-                    player->angle = 0;
-                return (1);
-			}
-			x++;
-		}
-        y++;
-	}
-    ft_printerror("There's no player in the map!\n");
-    return (0);
-}
-
 
 void	ft_load_images(t_cub *cub, t_config *game_config)
 {
@@ -77,49 +32,56 @@ void	ft_load_images(t_cub *cub, t_config *game_config)
 	cub->ea = ft_get_image(cub, game_config->ea);
 }
 
+void	init_floor_ceil_color(t_cub *cub, t_config *game_config)
+{
+	cub->f[0] = ft_atoi_color(game_config->f[0]);
+	cub->f[1] = ft_atoi_color(game_config->f[1]);
+	cub->f[2] = ft_atoi_color(game_config->f[2]);
+	if (game_config->f[3] == NULL)
+		cub->f[3] = 255;
+	else
+		cub->f[3] = ft_atoi_color(game_config->f[3]);
+	cub->c[0] = ft_atoi_color(game_config->c[0]);
+	cub->c[1] = ft_atoi_color(game_config->c[1]);
+	cub->c[2] = ft_atoi_color(game_config->c[2]);
+	if (game_config->c[3] == NULL)
+		cub->c[3] = 255;
+	else
+		cub->c[3] = ft_atoi_color(game_config->c[3]);
+}
 
 void	ft_init_cub(t_cub *cub, t_config *game_config)
 {
-	if (!(cub->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", false)))
-    {
-        perror(mlx_strerror(mlx_errno));
-        return ;
-    }
+	ft_mlx_init(cub);
 	cub->map = game_config->map;
-	cub->f[3] = 255;
-	cub->c[3] = 255;
-    cub->mapx = game_config->mapx;
-    cub->mapy = game_config->mapy;
-    if (!ft_get_player_postion(&cub->player, cub->map))
-        return ;
+	init_floor_ceil_color(cub, game_config);
+	cub->mapx = game_config->mapx;
+	cub->mapy = game_config->mapy;
+	if (!ft_get_player_postion(&cub->player, cub->map, 0, 0))
+		return ;
 	ft_load_images(cub, game_config);
 	ft_init_player(&(cub->player));
-	if (!(cub->image = mlx_new_image(cub->mlx, WIDTH, HEIGHT)))
-    {
-        mlx_close_window(cub->mlx);
-        perror(mlx_strerror(mlx_errno));
-        return ;
-    }
 	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) == -1)
-    {
-        mlx_close_window(cub->mlx);
-        perror(mlx_strerror(mlx_errno));
-        return ;
-    }
+	{
+		mlx_close_window(cub->mlx);
+		perror(mlx_strerror(mlx_errno));
+		return ;
+	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    t_config	*game_config;
-    game_config = parser(ac, av);
-    if (!game_config)
-        return (EXIT_FAILURE);
-    t_cub   cub;
-    ft_init_cub(&cub, game_config);
+	t_config	*game_config;
+	t_cub		cub;
+
+	game_config = parser(ac, av);
+	if (!game_config)
+		return (EXIT_FAILURE);
+	ft_init_cub(&cub, game_config);
 	mlx_image_to_window(cub.mlx, cub.image, 0, 0);
-    mlx_loop_hook(cub.mlx, ft_hook, &cub);
-    mlx_loop(cub.mlx);
-    mlx_terminate(cub.mlx);
-    g_malloc(0, FREE);
-    return (EXIT_SUCCESS);
+	mlx_loop_hook(cub.mlx, ft_hook, &cub);
+	mlx_loop(cub.mlx);
+	mlx_terminate(cub.mlx);
+	g_malloc(0, FREE);
+	return (EXIT_SUCCESS);
 }
