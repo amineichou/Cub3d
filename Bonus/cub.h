@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/02 22:04:41 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/03 12:31:54 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,65 +20,63 @@
 # include <math.h>
 # include <fcntl.h>
 # include <limits.h>
-# include <float.h> 
 # include "MLX42.h"
-
 
 # define BUFFER_SIZE 500
 # define WIDTH 1080
 # define HEIGHT 720
 # define TILE_SIZE 64
-# define FOV 60 * (M_PI / 180)
+// FOV = 60 * (M_PI / 180) = 1.04719755
+# define FOV 1.04719755
 # define NUM_RAYS WIDTH
 # define MINIMAP_SCALE_FACTOR 0.4
 # define MINIMAP_PAD 13
-# define MINIMAP_RADIUS 4 * TILE_SIZE * MINIMAP_SCALE_FACTOR
-
+// MINIMAP_RADIUS = 4 * TILE_SIZE * MINIMAP_SCALE_FACTOR = 102.4
+# define MINIMAP_RADIUS 102.4
 
 typedef struct s_point
 {
-    int x;
-    int y;
-}   t_point;
+	int	x;
+	int	y;
+}	t_point;
 
 typedef struct s_player
 {
-    float xposition;
-    float yposition;
-    float xpixel;
-    float ypixel;
-    float radius;
-    float walk_speed;
-    float turn_speed;
-    float angle;
-}   t_player;
+	float	xposition;
+	float	yposition;
+	float	xpixel;
+	float	ypixel;
+	float	radius;
+	float	walk_speed;
+	float	turn_speed;
+	float	angle;
+}	t_player;
 
 typedef struct s_ray
 {
-    float   ray_angle;
-    float   wall_hitx;
-    float   wall_hity;
-    float   distance;
-    int     hit_vertical;
+	float	ray_angle;
+	float	wall_hitx;
+	float	wall_hity;
+	float	distance;
+	int		hit_vertical;
 	int		hit_horizontal;
-    int     is_door;
-    int     up;
-    int     down;
-    int     left;
-    int     right;
-}   t_ray;
-
+	int		is_door;
+	int		up;
+	int		down;
+	int		left;
+	int		right;
+}	t_ray;
 
 typedef struct s_cub
 {
-	mlx_t*			mlx;
-	mlx_image_t*	image;
+	mlx_t			*mlx;
+	mlx_image_t		*image;
 	t_player		player;
 	t_ray			rays[WIDTH];
 	char			**map;
 	int				mapx;
 	int				mapy;
-	int*			color_buffer;
+	int				*color_buffer;
 	mlx_image_t		*no;
 	mlx_image_t		*so;
 	mlx_image_t		*we;
@@ -97,11 +95,11 @@ typedef struct s_cub
 
 typedef struct s_data_rays
 {
-    float xintercept;
-    float yintercept;
-    float xstep;
-    float ystep;
-}   t_data_rays;
+	float	xintercept;
+	float	yintercept;
+	float	xstep;
+	float	ystep;
+}	t_data_rays;
 
 typedef struct s_config
 {
@@ -136,7 +134,6 @@ typedef enum s_direction
 	LEFT,
 }	t_direction;
 
-
 typedef enum s_actions
 {
 	NORMAL,
@@ -156,6 +153,7 @@ typedef enum s_actions
 
 // main
 void		ft_load_images(t_cub *cub, t_config *game_config);
+void		init_floor_ceil_color(t_cub *cub, t_config *game_config);
 
 // garbage collector
 void		*g_malloc(size_t size, t_g_malloc mode);
@@ -186,6 +184,7 @@ bool		is_usless_door(char **map, int x, int y);
 int			non_valid_chars(char **map);
 int			ft_atoi_color(const char *str);
 int			ft_mlx_init(t_cub *cub);
+void		ft_init_cub(t_cub *cub, t_config *game_config);
 
 // read_all_file
 char		*get_next_line(int fd);
@@ -204,19 +203,19 @@ void		cast_rays(t_cub *cub);
 int			is_wall(t_cub *cub, float xpixel, float ypixel);
 
 // player
-void		update_player_position(t_cub* cub);
-void		ft_init_player(t_player* player);
+void		update_player_position(t_cub *cub);
+void		ft_init_player(t_player *player);
 
 // drawing
 int			ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void		plot(int x, int y, t_cub *cub, int color);
-void		draw_line(t_point start_point, t_point end_point, t_cub *cub, int color);
-void		clear_image(mlx_image_t* image);
+void		draw_line(t_point start_point, t_point end_point,
+				t_cub *cub, int color);
+void		clear_image(mlx_image_t *image);
 void		draw_3d(t_cub *cub);
-void    	ft_minimap(t_cub *cub);
+void		ft_minimap(t_cub *cub);
 mlx_image_t	*ft_get_image(t_cub *cub, char *pathname);
 void		draw_rays(t_cub *cub);
-
 
 // animation
 mlx_image_t	**ft_get_frames(t_cub *cub, char *path, int frames);

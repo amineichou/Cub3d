@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:32:05 by skarim            #+#    #+#             */
-/*   Updated: 2024/09/02 15:59:11 by skarim           ###   ########.fr       */
+/*   Updated: 2024/09/03 11:18:15 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ void	ft_check(t_cub *cub, t_ray vertical_ray,
 	float	hor_distance;
 	float	ver_distance;
 
-	hor_distance = FLT_MAX;
+	hor_distance = INT_MAX;
 	if (horizontal_ray.hit_horizontal)
 		hor_distance = calculate_distance(cub, &horizontal_ray);
-	ver_distance = FLT_MAX;
+	ver_distance = INT_MAX;
 	if (vertical_ray.hit_vertical)
 		ver_distance = calculate_distance(cub, &vertical_ray);
 	if (hor_distance < ver_distance)
