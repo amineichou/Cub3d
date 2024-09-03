@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 14:53:09 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/02 18:13:32 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/03 10:36:35 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ mlx_image_t	*ft_get_image(t_cub *cub, char *pathname)
 	texture = mlx_load_png(pathname);
 	if (!texture)
 	{
-	printf("pathname = '%s'\n", pathname);
 		ft_printerror("texture file error to open\n");
 		exit(1);
 	}
@@ -92,10 +91,10 @@ char	*ft_itoa(int n)
 int	ft_get_player_postion(t_player *player, char **map, int x, int y)
 {
 	y = 0;
-	while (map[y++])
+	while (map[y])
 	{
 		x = 0;
-		while (map[y++][x++])
+		while (map[y][x])
 		{
 			if (is_player(map[y][x]))
 			{
@@ -111,7 +110,9 @@ int	ft_get_player_postion(t_player *player, char **map, int x, int y)
 					player->angle = 0;
 				return (1);
 			}
+			x++;
 		}
+		y++;
 	}
 	return (ft_printerror("There's no player in the map!\n"), 0);
 }

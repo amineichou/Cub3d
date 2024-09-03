@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:32:15 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/02 20:49:27 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/03 10:35:24 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ static char	**get_map(int fd, char *line, t_config **config)
 {
 	char	*map_str;
 	char	**map;
-	int		map_row;
-	int		map_colmun;
 	int		i;
 
 	i = 0;
-	map_row = -1;
-	map_colmun = 0;
+	(*config)->mapx = -1;
+	(*config)->mapy = 0;
 	map_str = NULL;
 	while (line && ft_isemptystr(line))
 		line = get_next_line(fd);
@@ -31,15 +29,13 @@ static char	**get_map(int fd, char *line, t_config **config)
 		if (line && ft_isemptystr(line))
 			return (ft_printerror(MAP_ERR), NULL);
 		map_str = ft_strjoin(map_str, line);
-		map_colmun++;
-		if (map_row < ft_strlen(line))
-			map_row = ft_strlen(line);
+		(*config)->mapy++;
+		if ((*config)->mapx < ft_strlen(line))
+			(*config)->mapx = ft_strlen(line);
 		line = get_next_line(fd);
 		i++;
 	}
-	(*config)->mapx = map_row;
-	(*config)->mapy = map_colmun;
-	map = make_map(map_str, map_row, map_colmun);
+	map = make_map(map_str, (*config)->mapx, (*config)->mapy);
 	return (map);
 }
 
@@ -72,7 +68,7 @@ static int	set_arg(t_config *config, char *line, int args_count)
 }
 
 static t_config	*get_args(t_config *config, int fd)
-{ 
+{
 	char	*line;
 	int		args_count;
 
@@ -98,7 +94,6 @@ static t_config	*get_args(t_config *config, int fd)
 		return (NULL);
 	return (config);
 }
-
 
 /*
 	=> parsing args

@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:57:14 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/02 22:10:24 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/03 10:26:40 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 int	ft_mlx_init(t_cub *cub)
 {
-	if (!(cub->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", false)))
+	cub->mlx = mlx_init(WIDTH, HEIGHT, "MLX42", false);
+	if (!cub->mlx)
 	{
 		perror(mlx_strerror(mlx_errno));
 		return (exit(1), 1);
 	}
-	if (!(cub->image = mlx_new_image(cub->mlx, WIDTH, HEIGHT)))
+	cub->image = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+	if (!cub->image)
 	{
 		mlx_close_window(cub->mlx);
 		perror(mlx_strerror(mlx_errno));
 		return (exit(1), 1);
 	}
-    return (0);
+	return (0);
 }
