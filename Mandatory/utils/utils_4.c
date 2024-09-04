@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 22:40:56 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/03 14:55:02 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/03 18:25:01 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,12 @@ int	ft_atoi_color(const char *str)
 	return (res * sign);
 }
 
+/*
+	** get the player position in the map
+	** and set the player angle according to the player's Charachter
+	** return 1 if the player is found
+	** return 0 if the player is not found
+*/
 int	ft_get_player_postion(t_player *player, char **map, int x, int y)
 {
 	y = 0;

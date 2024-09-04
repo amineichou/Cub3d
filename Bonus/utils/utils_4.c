@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 14:53:09 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/03 10:36:35 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/04 15:16:16 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ mlx_image_t	*ft_get_image(t_cub *cub, char *pathname)
 	return (image);
 }
 
+/*
+	a door is represented by 'D'
+*/
 bool	is_door(char c)
 {
 	if (c == 'D')
@@ -88,6 +91,12 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
+/*
+	** get the player position in the map
+	** and set the player angle according to the player's Charachter
+	** return 1 if the player is found
+	** return 0 if the player is not found
+*/
 int	ft_get_player_postion(t_player *player, char **map, int x, int y)
 {
 	y = 0;

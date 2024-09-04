@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 17:04:30 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/01 13:52:34 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/04 15:17:13 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ int	is_duplicate_player(char **map)
 		}
 		y++;
 	}
+	if (player == 0)
+		return (ft_printerror("invalid map, no player.\n"), 1);
 	return (0);
 }
 

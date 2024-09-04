@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:32:15 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/03 12:36:52 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/04 15:14:11 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ static char	**get_map(int fd, char *line, t_config **config)
 	(*config)->mapx = -1;
 	(*config)->mapy = 0;
 	map_str = NULL;
-	while (ft_isemptystr(line))
+	while (line && ft_isemptystr(line))
 		line = get_next_line(fd);
+	if (!line)
+		return (ft_printerror(MAP_ERR), NULL);
 	while (line)
 	{
 		if (line && ft_isemptystr(line))
@@ -73,9 +75,9 @@ static t_config	*get_args(t_config *config, int fd)
 	int		args_count;
 
 	config = g_malloc(sizeof(t_config), ALLOCATE);
-	if (!config)
-		return (NULL);
 	line = get_next_line(fd);
+	if (!line)
+		return (ft_printerror(PARSE_ERR), NULL);
 	args_count = 1;
 	while (line)
 	{
