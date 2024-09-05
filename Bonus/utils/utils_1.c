@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 12:00:33 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/02 17:58:01 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:30:04 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 int	ft_strlen(char *str)
 {

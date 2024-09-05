@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vertical_raycasting.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:14:04 by skarim            #+#    #+#             */
-/*   Updated: 2024/09/02 15:32:59 by skarim           ###   ########.fr       */
+/*   Updated: 2024/09/05 11:23:19 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 /*
 Initialize vertical raycasting data
 */

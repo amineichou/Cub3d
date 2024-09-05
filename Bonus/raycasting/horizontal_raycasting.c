@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_raycasting.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:30:44 by skarim            #+#    #+#             */
-/*   Updated: 2024/09/02 16:02:55 by skarim           ###   ########.fr       */
+/*   Updated: 2024/09/05 11:29:20 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 /*
 Updates the horizontal ray structure after detecting a collision.

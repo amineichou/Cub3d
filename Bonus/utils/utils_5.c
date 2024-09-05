@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 13:42:40 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/02 18:05:28 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:43:37 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 /*
 	check if the door is valid
@@ -144,7 +144,5 @@ char	*ft_trim_spaces(char *str)
 		j--;
 	j = ft_strlen(str) - j - 1;
 	res = ft_strldup(str + i, (ft_strlen(str) - i - j));
-	if (!res)
-		return (ft_printerror(MALLOC_ERR), NULL);
 	return (res);
 }

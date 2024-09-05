@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 14:53:09 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/04 15:16:16 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:30:27 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 int	ft_atoi(const char *str)
 {

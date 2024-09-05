@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 21:37:05 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/03 10:26:52 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:35:25 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 char	**ft_divide_str(char *str)
 {
@@ -74,6 +74,13 @@ int	is_valid_map_char(char c)
 int	is_player(char c)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	return (0);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }

@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 20:28:26 by moichou           #+#    #+#             */
-/*   Updated: 2024/08/02 17:27:17 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:29:58 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 static char	*get_row(char *map_str, int *i, int s_row)
 {

@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 17:04:30 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/04 15:04:59 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 12:02:59 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 int	is_inwall(char **map, int x, int y, t_direction dir)
 {
@@ -26,7 +26,8 @@ int	is_inwall(char **map, int x, int y, t_direction dir)
 	}
 	else if (dir == BOTTOM)
 	{
-		while (map[y] && map[y + 1] && (map[y][x] == '0' || is_player(map[y][x])))
+		while (map[y] && map[y + 1] && (map[y][x] == '0'
+			|| is_player(map[y][x])))
 			y++;
 	}
 	else if (dir == LEFT)
@@ -91,36 +92,6 @@ int	non_valid_chars(char **map)
 	}
 	return (1);
 }
-
-/*
-	this function checks if there's a duplicate player
-	returns 1 if there's, 0 if there is not
-*/
-int	is_duplicate_player(char **map)
-{
-	int	x;
-	int	y;
-	int	player;
-
-	y = 0;
-	player = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (is_player(map[y][x]))
-				player++;
-			if (player > 2)
-				return (ft_printerror("invalid map, duplicate player.\n"), 1);
-			x++;
-		}
-		y++;
-	}
-	return (0);
-}
-
-
 
 /*
 	check if there's a player in the map

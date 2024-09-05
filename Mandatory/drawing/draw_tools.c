@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:08:37 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/09 11:52:16 by skarim           ###   ########.fr       */
+/*   Updated: 2024/09/05 11:22:41 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 /*
 Create a 32-bit pixel value from RGBA components

@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 22:40:56 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/03 18:25:01 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:24:56 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 int	ft_atoi(const char *str)
 {
@@ -121,4 +121,11 @@ int	ft_get_player_postion(t_player *player, char **map, int x, int y)
 		y++;
 	}
 	return (ft_printerror("There's no player in the map!\n"), 0);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

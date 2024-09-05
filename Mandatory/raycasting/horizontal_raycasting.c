@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_raycasting.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skarim <skarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:30:44 by skarim            #+#    #+#             */
-/*   Updated: 2024/09/02 15:32:28 by skarim           ###   ########.fr       */
+/*   Updated: 2024/09/05 11:23:03 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 /*
 Initialize horizontal raycasting data

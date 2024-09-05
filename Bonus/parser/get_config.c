@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:32:15 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/04 15:14:47 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:51:11 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 static char	**get_map(int fd, char *line, t_config **config)
 {
@@ -97,6 +97,31 @@ static t_config	*get_args(t_config *config, int fd)
 	return (config);
 }
 
+int	parse_args(t_config *config)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (config->f[i])
+	{
+		j = 0;
+		config->f[i] = ft_trim_spaces(config->f[i]);
+		if (!config->f[i])
+			return (ft_printerror(PARSE_ERR), -1);
+		while (config->f[i][j])
+		{
+			if (!ft_isdigit(config->f[i][j]))
+				return (ft_printerror(PARSE_ERR), -1);
+			j++;
+		}
+		if (i >= 4)
+			return (ft_printerror(PARSE_ERR), -1);
+		i++;
+	}
+	return (1);
+}
+
 /*
 	=> parsing args
 	=> making config
@@ -113,7 +138,8 @@ t_config	*make_config(char *filename)
 	if (fd == -1)
 		return (ft_printerror(OPEN_ERR), NULL);
 	config = get_args(config, fd);
-	if (!config || parse_map(config->map) == -1)
+	if (!config || parse_args(config) == -1
+		|| parse_map(config->map) == -1)
 		return (close(fd), NULL);
 	return (close(fd), config);
 }

@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 11:11:24 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/15 16:44:53 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:23:35 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 static int	check_valid_filename(char *filename)
 {

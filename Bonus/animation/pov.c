@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:38:38 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/02 18:14:34 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:31:01 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 /*
 	load images Please fix the path to the images in ft_get_image
@@ -44,7 +44,7 @@ void	ft_end_shooting(t_cub *cub)
 {
 	cub->shooting_active = false;
 	cub->sfc = 0;
-	cub->pov_normal = ft_get_image(cub, "./textures/normal.png");
+	cub->pov_normal = ft_get_image(cub, "../textures/normal.png");
 	if (!mlx_resize_image(cub->pov_normal, WIDTH, HEIGHT))
 	{
 		ft_printerror("resize error\n");
@@ -86,7 +86,7 @@ void	ft_update_shooting(t_cub *cub)
 		cub->shooting_duration++;
 }
 
-void	ft_star_shooting(t_cub *cub)
+void	ft_init_shooting(t_cub *cub)
 {
 	cub->shooting_frames = ft_get_frames(cub, "./animation/shooting/", 7);
 	if (cub->shooting_frames == NULL)
@@ -107,16 +107,8 @@ void	ft_pov(void *arg)
 	cub = (t_cub *)arg;
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_SPACE) && !cub->shooting_active)
 	{
-		if (fork() == 0)
-		{
-			system("afplay ./animation/gun-shot.wav");
-			exit(0);
-		}
-		else
-		{
-			mlx_delete_image(cub->mlx, cub->pov_normal);
-			ft_star_shooting(cub);
-		}
+		mlx_delete_image(cub->mlx, cub->pov_normal);
+		ft_init_shooting(cub);
 	}
 	ft_update_shooting(cub);
 }

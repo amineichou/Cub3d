@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:07:25 by skarim            #+#    #+#             */
-/*   Updated: 2024/08/11 15:58:18 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:29:15 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 /*
 Takes an angle in radians and normalizes it to be within the range [0, 2*PI]

@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:54:37 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/11 13:55:51 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:30:40 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 static size_t	ft_count_delimiters(char const *s, char c)
 {

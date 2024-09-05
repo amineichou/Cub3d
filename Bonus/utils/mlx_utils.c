@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 21:57:14 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/03 12:30:39 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 12:06:55 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 int	ft_mlx_init(t_cub *cub)
 {

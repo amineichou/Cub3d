@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:44:12 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/02 18:03:44 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:30:16 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 char	*ft_strjoin(char *first, char *second)
 {

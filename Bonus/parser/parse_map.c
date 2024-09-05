@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 17:04:30 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/04 15:17:13 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:29:43 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 /*
 	check if the character is a player or door

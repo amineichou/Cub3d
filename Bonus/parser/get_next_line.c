@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:42:04 by moichou           #+#    #+#             */
-/*   Updated: 2024/07/13 16:48:14 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:29:53 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 static char	*ft_read(int fd, char *result)
 {

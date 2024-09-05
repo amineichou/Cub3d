@@ -6,11 +6,11 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:50:30 by skarim            #+#    #+#             */
-/*   Updated: 2024/09/03 10:36:00 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 11:29:11 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "../headers/cub.h"
 
 /*
 	** Get the pixel color from the image at the given coordinates.
