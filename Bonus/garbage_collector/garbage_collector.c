@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 14:08:43 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/05 11:29:34 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 21:46:13 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,19 @@ void	*g_malloc(size_t size, t_g_malloc mode)
 	{
 		node = malloc(sizeof(t_garbage));
 		if (!node)
-			return (ft_printerror(MALLOC_ERR), exit(1), NULL);
-		node->allocated = malloc(size);
-		if (!node->allocated)
-			return (ft_printerror(MALLOC_ERR), exit(1), NULL);
+		{
+			ft_printerror(MALLOC_ERR);
+			g_free(lst);
+			exit(1);
+		}
 		node->next = NULL;
 		appand_to_lst(&lst, node);
-		return (node->allocated);
+		node->allocated = malloc(size);
+		if (node->allocated)
+			return (node->allocated);
+		ft_printerror(MALLOC_ERR);
+		g_free(lst);
+		exit(1);
 	}
 	else if (mode == FREE)
 		g_free(lst);
