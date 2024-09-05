@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:53:10 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/05 11:22:30 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 13:44:10 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(int ac, char **av)
 
 	game_config = parser(ac, av);
 	if (!game_config)
-		return (EXIT_FAILURE);
+		return (g_malloc(0, FREE), EXIT_FAILURE);
 	ft_init_cub(&cub, game_config);
 	mlx_image_to_window(cub.mlx, cub.image, 0, 0);
 	mlx_loop_hook(cub.mlx, ft_hook, &cub);

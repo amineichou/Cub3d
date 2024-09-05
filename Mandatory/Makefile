@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 SRC = main.c \
 		drawing/draw_tools.c drawing/draw.c \
 		player/player.c \
