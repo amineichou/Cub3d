@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 12:19:00 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/05 12:19:10 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 17:59:12 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	parse_args_f(t_config *config)
 			return (ft_printerror(PARSE_ERR), -1);
 		i++;
 	}
+	if (i < 3)
+		return (ft_printerror(PARSE_ERR), -1);
 	return (1);
 }
 
@@ -59,5 +61,7 @@ int	parse_args_c(t_config *config)
 			return (ft_printerror(PARSE_ERR), -1);
 		i++;
 	}
+	if (i < 3)
+		return (ft_printerror(PARSE_ERR), -1);
 	return (1);
 }
