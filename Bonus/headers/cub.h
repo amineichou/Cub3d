@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/05 12:04:14 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 12:20:18 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,8 @@ int			parse_map(char **map);
 t_config	*parser(int ac, char **filename);
 t_config	*make_config(char *filename);
 char		**make_map(char *map_str, int s_row, int s_clm);
+int			parse_args_f(t_config *config);
+int			parse_args_c(t_config *config);
 
 // raycasting
 t_ray		check_horizontal(t_cub *cub, int ray_id);

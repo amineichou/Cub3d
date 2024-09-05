@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:52:35 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/05 12:04:52 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 12:19:49 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,8 @@ int			parse_map(char **map);
 t_config	*parser(int ac, char **filename);
 t_config	*make_config(char *filename);
 char		**make_map(char *map_str, int s_row, int s_clm);
+int			parse_args_f(t_config *config);
+int			parse_args_c(t_config *config);
 
 // get_config file
 mlx_image_t	*ft_get_image(t_cub *cub, char *pathname);
