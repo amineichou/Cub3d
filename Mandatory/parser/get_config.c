@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:32:15 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/05 12:18:23 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 18:43:52 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ t_config	*make_config(char *filename)
 	t_config	*config;
 
 	config = NULL;
-	fd = open(filename, O_RDONLY, 777);
+	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (ft_printerror(OPEN_ERR), NULL);
 	config = get_args(config, fd);
