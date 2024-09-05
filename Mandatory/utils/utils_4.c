@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 22:40:56 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/05 11:24:56 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 15:29:00 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ mlx_image_t	*ft_get_image(t_cub *cub, char *pathname)
 
 	pathname++;
 	texture = mlx_load_png(pathname);
-	printf("%s\n", pathname);
 	if (!texture)
 	{
 		ft_printerror("texture file error to open\n");

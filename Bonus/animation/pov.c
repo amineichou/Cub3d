@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:38:38 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/05 11:31:01 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 15:28:34 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_end_shooting(t_cub *cub)
 {
 	cub->shooting_active = false;
 	cub->sfc = 0;
-	cub->pov_normal = ft_get_image(cub, "../textures/normal.png");
+	cub->pov_normal = ft_get_image(cub, "textures/normal.png");
 	if (!mlx_resize_image(cub->pov_normal, WIDTH, HEIGHT))
 	{
 		ft_printerror("resize error\n");
@@ -88,7 +88,7 @@ void	ft_update_shooting(t_cub *cub)
 
 void	ft_init_shooting(t_cub *cub)
 {
-	cub->shooting_frames = ft_get_frames(cub, "./animation/shooting/", 7);
+	cub->shooting_frames = ft_get_frames(cub, "Bonus/animation/shooting/", 7);
 	if (cub->shooting_frames == NULL)
 	{
 		ft_printerror("shooting frames error\n");

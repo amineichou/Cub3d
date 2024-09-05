@@ -6,7 +6,7 @@
 /*   By: moichou <moichou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 10:53:10 by moichou           #+#    #+#             */
-/*   Updated: 2024/09/05 11:28:52 by moichou          ###   ########.fr       */
+/*   Updated: 2024/09/05 15:24:38 by moichou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	ft_load_images(t_cub *cub, t_config *game_config)
 	cub->so = ft_get_image(cub, game_config->so);
 	cub->we = ft_get_image(cub, game_config->we);
 	cub->ea = ft_get_image(cub, game_config->ea);
-	cub->door = ft_get_image(cub, "../textures/door.png");
-	cub->pov_normal = ft_get_image(cub, "../textures/normal.png");
+	cub->door = ft_get_image(cub, "textures/door.png");
+	cub->pov_normal = ft_get_image(cub, "textures/normal.png");
 	if (!mlx_resize_image(cub->pov_normal, WIDTH, HEIGHT))
 	{
 		ft_printerror("resize error\n");

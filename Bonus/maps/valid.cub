@@ -1,10 +1,10 @@
-NO ../textures/tx_1.png
-SO ../textures/tx_2.png
-WE ../textures/tx_3.png
-EA ../textures/tx_4.png
+NO textures/tx_1.png
+SO textures/tx_2.png
+WE textures/tx_3.png
+EA textures/tx_4.png
 
-F 16, 16, 33, 255,,,,,
-C 135, 206 , 235,,,,
+F 16, 16, 33, 255
+C 135, 206 , 235
 
 
 
