@@ -13,6 +13,7 @@ representation using the Ray-Casting principles.
 - [Controls](#controls)
 - [Preview](#preview)
 - [Contributors](#contributors)
+- [Resources] (#resources)
 - [License](#license)
 
 ## Introduction
@@ -140,6 +141,12 @@ C 135, 206 , 235
 
 [Amine Ichou](https://github.com/amineichou)
 [Said Karim](https://github.com/mrsaidkarim)
+
+## Resources
+
+[raycasting - wikipedia](https://en.wikipedia.org/wiki/Ray_casting#:~:text=Ray%20casting%20is%20the%20most,scenes%20to%20two%2Ddimensional%20images.)
+[raycasting - lodev](https://lodev.org/cgtutor/raycasting.html)
+[raycasting - medium](https://ismailassil.medium.com/ray-casting-c-8bfae2c2fc13)
 
 ## License
 
